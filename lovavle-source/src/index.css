@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Geist+Mono:wght@400;700&family=Orbitron:wght@400;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Light mode ── */
+    --background: 210 20% 98%;
+    --foreground: 214 50% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 214 50% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 50% 12%;
+
+    --primary: 216 92% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 214 20% 93%;
+    --secondary-foreground: 214 40% 30%;
+
+    --muted: 214 15% 92%;
+    --muted-foreground: 214 10% 45%;
+
+    --accent: 207 100% 46%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 142 72% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 18% 86%;
+    --input: 214 18% 90%;
+    --ring: 216 92% 52%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 214 30% 30%;
+    --sidebar-primary: 216 92% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 20% 95%;
+    --sidebar-accent-foreground: 214 30% 30%;
+    --sidebar-border: 214 18% 88%;
+    --sidebar-ring: 216 92% 52%;
+
+    --gradient-brand: linear-gradient(135deg, hsl(214 88% 21%), hsl(216 92% 52%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 97%));
+    --shadow-brand: 0 4px 24px -4px hsl(216 92% 52% / 0.15);
+    --shadow-card: 0 4px 16px -4px hsl(214 30% 20% / 0.08);
+  }
+
+  .dark {
+    /* ── Dark mode (original Bullfy palette) ── */
+    --background: 214 50% 6%;
+    --foreground: 207 30% 92%;
+
+    --card: 214 45% 9%;
+    --card-foreground: 207 30% 92%;
+
+    --popover: 214 45% 11%;
+    --popover-foreground: 207 30% 92%;
+
+    --primary: 216 92% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 214 40% 15%;
+    --secondary-foreground: 207 20% 80%;
+
+    --muted: 214 35% 13%;
+    --muted-foreground: 207 16% 55%;
+
+    --accent: 207 100% 76%;
+    --accent-foreground: 214 88% 21%;
+
+    --success: 142 69% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 30% 18%;
+    --input: 214 35% 15%;
+    --ring: 216 92% 52%;
+
+    --sidebar-background: 214 50% 7%;
+    --sidebar-foreground: 207 20% 80%;
+    --sidebar-primary: 216 92% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 35% 13%;
+    --sidebar-accent-foreground: 207 20% 80%;
+    --sidebar-border: 214 30% 14%;
+    --sidebar-ring: 216 92% 52%;
+
+    --gradient-brand: linear-gradient(135deg, hsl(214 88% 21%), hsl(216 92% 52%));
+    --gradient-card: linear-gradient(145deg, hsl(214 45% 11%), hsl(214 50% 7%));
+    --shadow-brand: 0 4px 24px -4px hsl(216 92% 52% / 0.2);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    background: linear-gradient(135deg, hsl(216 92% 52%), hsl(207 100% 76%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-brand {
+    background: var(--gradient-brand);
+  }
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+  .shadow-brand {
+    box-shadow: var(--shadow-brand);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .glow-brand {
+    box-shadow: 0 0 20px hsl(216 92% 52% / 0.2), 0 0 60px hsl(216 92% 52% / 0.05);
+  }
+  /* Legacy aliases for smooth migration */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(216 92% 52%), hsl(207 100% 76%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, hsl(214 88% 21%), hsl(216 92% 52%));
+  }
+  .shadow-gold {
+    box-shadow: 0 4px 24px -4px hsl(216 92% 52% / 0.2);
+  }
+  .glow-gold {
+    box-shadow: 0 0 20px hsl(216 92% 52% / 0.2), 0 0 60px hsl(216 92% 52% / 0.05);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-120px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-250px) scale(0.8);
+  }
+}
+
+/* Compact lane variant for live reactions — emojis stay in a narrow
+   right-side column so they don't cover the main content. */
+@keyframes floatUpNarrow {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.7);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(3px, -5vh) scale(1);
+  }
+  70% {
+    opacity: 0.85;
+    transform: translate(-3px, -18vh) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(4px, -26vh) scale(0.8);
+  }
+}
+
+/* Ticker animation — duplicated here as safety net against Tailwind purge */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker var(--ticker-speed, 30s) linear infinite;
+}
+
+/* ===========================================================
+   Club Financiero — Portal-scoped branding override
+   Applies Segoe UI typography & themed neutrals only when
+   browsing /partner/club-financiero (admin & client).
+   =========================================================== */
+html[data-portal="club-financiero"] {
+  font-family: "Segoe UI", "Segoe UI Variable", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+html[data-portal="club-financiero"] body,
+html[data-portal="club-financiero"] .font-display,
+html[data-portal="club-financiero"] h1,
+html[data-portal="club-financiero"] h2,
+html[data-portal="club-financiero"] h3,
+html[data-portal="club-financiero"] h4,
+html[data-portal="club-financiero"] h5,
+html[data-portal="club-financiero"] h6 {
+  font-family: "Segoe UI", "Segoe UI Variable", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  letter-spacing: 0.005em;
+}
+
+/* Dark neutral surface tuning to match brand palette
+   (#171717 background, #434342 cards, #5a5959 muted, #d9d9d9 light text)
+   Nota: --primary se agrega como fallback defensivo si el inline script
+   en index.html no corre. Su valor (126 52% 42% = #33A23F verde) debe
+   coincidir con el primary_color en partner_portal_branding y con
+   KNOWN_PORTALS_BRANDING en index.html. Si Club cambia su color, hay
+   que actualizar las 3 fuentes en sincronía. */
+html[data-portal="club-financiero"].dark,
+html[data-portal="club-financiero"]:not(.dark) {
+  --background: 0 0% 9%;          /* #171717 */
+  --foreground: 0 0% 85%;         /* #d9d9d9 */
+  --card: 60 1% 26%;              /* #434342 */
+  --card-foreground: 0 0% 95%;
+  --popover: 60 1% 26%;
+  --popover-foreground: 0 0% 95%;
+  --muted: 0 0% 35%;              /* #5a5959 */
+  --muted-foreground: 0 0% 75%;
+  --border: 0 0% 25%;
+  --input: 0 0% 25%;
+  --ring: 126 52% 42%;            /* #33A23F verde */
+  --primary: 126 52% 42%;         /* #33A23F verde — fallback si inline script no corre */
+}
+
+/* Mobile-only (<768px): prevent LiveKit ControlBar from wrapping inside the
+   horizontally-scrollable live footer. Desktop (>=768px) is untouched. */
+@media (max-width: 767px) {
+  .lk-control-bar {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    border-top: 0 !important;
+    max-height: none !important;
+  }
+}
+
+/* =========================================================
+   BULLFY TOURNAMENT — Torneum Neon theme (scoped)
+   Activated by wrapping the tournament shell in `.tournament-neon`.
+   Does NOT affect the rest of the app.
+========================================================= */
+.tournament-neon {
+  --t-bg: #060B1F;
+  --t-surface: #0a1129;
+  --t-cyan: #00E5FF;
+  --t-magenta: #FF2EC4;
+  --t-lime: #B6FF3D;
+  --t-border: rgba(255,255,255,0.08);
+  --t-display: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+  --t-body: 'Space Grotesk', system-ui, sans-serif;
+  --t-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  background: var(--t-bg);
+  color: #fff;
+  font-family: var(--t-body);
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+}
+.tournament-neon::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.6) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, #000 30%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, #000 30%, transparent 90%);
+}
+.tournament-neon .t-display { font-family: var(--t-display); letter-spacing: -0.01em; }
+.tournament-neon .t-mono { font-family: var(--t-mono); }
+
+/* Subtle CSS glitch on hero heading */
+.tournament-neon .t-glitch {
+  position: relative;
+  display: inline-block;
+}
+.tournament-neon .t-glitch::before,
+.tournament-neon .t-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+}
+.tournament-neon .t-glitch::before {
+  color: var(--t-cyan);
+  transform: translate(2px, 0);
+  mix-blend-mode: screen;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  animation: t-glitch-a 4.6s steps(1) infinite;
+  opacity: 0.65;
+}
+.tournament-neon .t-glitch::after {
+  color: var(--t-magenta);
+  transform: translate(-2px, 0);
+  mix-blend-mode: screen;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  animation: t-glitch-b 5.3s steps(1) infinite;
+  opacity: 0.65;
+}
+@keyframes t-glitch-a {
+  0%, 92%, 100% { transform: translate(0, 0); clip-path: polygon(0 0,100% 0,100% 35%,0 35%); }
+  93% { transform: translate(3px, -1px); clip-path: polygon(0 10%, 100% 10%, 100% 28%, 0 28%); }
+  95% { transform: translate(-2px, 1px); clip-path: polygon(0 40%, 100% 40%, 100% 55%, 0 55%); }
+  97% { transform: translate(4px, 0); clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%); }
+}
+@keyframes t-glitch-b {
+  0%, 90%, 100% { transform: translate(0, 0); clip-path: polygon(0 65%,100% 65%,100% 100%,0 100%); }
+  91% { transform: translate(-3px, 2px); clip-path: polygon(0 72%, 100% 72%, 100% 88%, 0 88%); }
+  94% { transform: translate(2px, -1px); clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%); }
+  96% { transform: translate(-4px, 0); clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%); }
+}
+
+/* Shimmer gradient text */
+.tournament-neon .t-shimmer {
+  background: linear-gradient(90deg, var(--t-cyan), var(--t-lime), var(--t-cyan));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: t-shimmer 7s linear infinite;
+}
+@keyframes t-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Scanline overlay used on hero cards */
+.tournament-neon .t-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,0) 50%, rgba(0,0,0,0.18) 50%);
+  background-size: 100% 4px;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+
+/* Avaturn SDK iframe — fill container */
+.avaturn-iframe { width: 100%; height: 100%; border: 0; display: block; }

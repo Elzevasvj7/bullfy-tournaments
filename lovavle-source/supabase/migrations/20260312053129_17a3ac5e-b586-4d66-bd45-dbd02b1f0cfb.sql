@@ -1,0 +1,1 @@
+ALTER TABLE public.ibs ADD COLUMN tipo_persona text NOT NULL DEFAULT 'Persona Física';

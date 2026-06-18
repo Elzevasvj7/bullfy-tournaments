@@ -1,0 +1,1 @@
+ALTER TABLE public.ib_portal_promotions ADD COLUMN file_url text DEFAULT NULL;

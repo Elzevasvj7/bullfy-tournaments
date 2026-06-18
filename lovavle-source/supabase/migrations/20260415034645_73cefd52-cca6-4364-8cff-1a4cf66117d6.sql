@@ -1,0 +1,1 @@
+UPDATE public.newsletter_editions SET status = 'failed' WHERE id = 'c48560ec-cac6-4aff-ac82-f6012e69af12' AND status = 'generating';

@@ -1,0 +1,1 @@
+ALTER TABLE public.partner_users ADD COLUMN telefono TEXT;

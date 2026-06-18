@@ -1,0 +1,1 @@
+ALTER TABLE public.ibs ADD COLUMN IF NOT EXISTS tipo_grupo_cuentas text CHECK (tipo_grupo_cuentas IN ('CENT','Estándar','Ambas'));

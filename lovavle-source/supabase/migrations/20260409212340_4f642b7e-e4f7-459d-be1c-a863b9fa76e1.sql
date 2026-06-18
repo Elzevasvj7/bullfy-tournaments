@@ -1,0 +1,1 @@
+ALTER TABLE public.ops_requests ALTER COLUMN ib_id DROP NOT NULL;

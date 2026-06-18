@@ -1,0 +1,1 @@
+ALTER TABLE public.partner_portals ADD COLUMN tickers_enabled boolean NOT NULL DEFAULT false;

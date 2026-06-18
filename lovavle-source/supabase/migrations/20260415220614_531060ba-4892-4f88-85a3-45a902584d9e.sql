@@ -1,0 +1,1 @@
+ALTER TABLE public.newsletter_editions ADD COLUMN IF NOT EXISTS copywriter_style text NOT NULL DEFAULT 'technical';

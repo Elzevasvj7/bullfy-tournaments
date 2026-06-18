@@ -1,0 +1,177 @@
+CREATE OR REPLACE FUNCTION public.is_portal_owner(_portal_id uuid)
+RETURNS boolean
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT EXISTS (
+    SELECT 1
+    FROM public.partner_portals pp
+    JOIN public.profiles pr ON pr.ib_id = pp.ib_id
+    WHERE pp.id = _portal_id
+      AND pr.id = auth.uid()
+  )
+$$;
+
+CREATE OR REPLACE FUNCTION public.is_portal_admin(_portal_id uuid)
+RETURNS boolean
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT public.is_global_admin()
+      OR public.has_role(auth.uid(), 'admin'::public.app_role)
+      OR public.is_portal_owner(_portal_id)
+$$;
+
+CREATE OR REPLACE FUNCTION public.save_portal_mlm_settings(
+  _portal_id uuid,
+  _enabled boolean,
+  _active_levels integer,
+  _mlm_pool_percentage numeric,
+  _refund_window_days integer,
+  _orphan_policy text,
+  _commission_mode text,
+  _business_partners_enabled boolean,
+  _levels jsonb DEFAULT '[]'::jsonb
+)
+RETURNS public.portal_mlm_config
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  _saved public.portal_mlm_config%ROWTYPE;
+  _level jsonb;
+  _level_total numeric := 0;
+  _level_number integer;
+  _percentage numeric;
+BEGIN
+  IF auth.uid() IS NULL THEN
+    RAISE EXCEPTION 'No autenticado';
+  END IF;
+
+  IF NOT public.is_portal_admin(_portal_id) THEN
+    RAISE EXCEPTION 'No tienes permiso para administrar este portal';
+  END IF;
+
+  IF _active_levels < 1 OR _active_levels > 10 THEN
+    RAISE EXCEPTION 'Los niveles activos deben estar entre 1 y 10';
+  END IF;
+
+  IF _refund_window_days < 1 OR _refund_window_days > 30 THEN
+    RAISE EXCEPTION 'El refund window debe estar entre 1 y 30 días';
+  END IF;
+
+  IF _mlm_pool_percentage < 0 OR _mlm_pool_percentage > 100 THEN
+    RAISE EXCEPTION 'El pool MLM debe estar entre 0%% y 100%%';
+  END IF;
+
+  IF _orphan_policy NOT IN ('portal_owner', 'platform') THEN
+    RAISE EXCEPTION 'Política de huérfanos inválida';
+  END IF;
+
+  IF _commission_mode NOT IN ('pool', 'multi_product') THEN
+    RAISE EXCEPTION 'Modo de comisión inválido';
+  END IF;
+
+  IF _commission_mode = 'pool' THEN
+    IF jsonb_typeof(COALESCE(_levels, '[]'::jsonb)) <> 'array' THEN
+      RAISE EXCEPTION 'Los niveles MLM deben enviarse como lista';
+    END IF;
+
+    FOR _level IN SELECT * FROM jsonb_array_elements(COALESCE(_levels, '[]'::jsonb))
+    LOOP
+      _level_number := (_level->>'level_number')::integer;
+      _percentage := (_level->>'percentage')::numeric;
+
+      IF _level_number < 1 OR _level_number > 10 THEN
+        RAISE EXCEPTION 'Cada nivel debe estar entre 1 y 10';
+      END IF;
+
+      IF _percentage < 0 OR _percentage > 100 THEN
+        RAISE EXCEPTION 'Cada porcentaje debe estar entre 0%% y 100%%';
+      END IF;
+
+      _level_total := _level_total + _percentage;
+    END LOOP;
+
+    IF _level_total > 100 THEN
+      RAISE EXCEPTION 'La suma de porcentajes MLM no puede exceder 100%%';
+    END IF;
+  END IF;
+
+  INSERT INTO public.portal_mlm_config (
+    portal_id,
+    enabled,
+    active_levels,
+    mlm_pool_percentage,
+    refund_window_days,
+    orphan_policy,
+    commission_mode,
+    business_partners_enabled
+  ) VALUES (
+    _portal_id,
+    _enabled,
+    _active_levels,
+    _mlm_pool_percentage,
+    _refund_window_days,
+    _orphan_policy,
+    _commission_mode,
+    _business_partners_enabled
+  )
+  ON CONFLICT (portal_id) DO UPDATE SET
+    enabled = EXCLUDED.enabled,
+    active_levels = EXCLUDED.active_levels,
+    mlm_pool_percentage = EXCLUDED.mlm_pool_percentage,
+    refund_window_days = EXCLUDED.refund_window_days,
+    orphan_policy = EXCLUDED.orphan_policy,
+    commission_mode = EXCLUDED.commission_mode,
+    business_partners_enabled = EXCLUDED.business_partners_enabled,
+    updated_at = now()
+  RETURNING * INTO _saved;
+
+  IF _commission_mode = 'pool' THEN
+    DELETE FROM public.portal_mlm_levels WHERE portal_id = _portal_id;
+
+    FOR _level IN SELECT * FROM jsonb_array_elements(COALESCE(_levels, '[]'::jsonb))
+    LOOP
+      INSERT INTO public.portal_mlm_levels (portal_id, level_number, percentage)
+      VALUES (
+        _portal_id,
+        (_level->>'level_number')::integer,
+        (_level->>'percentage')::numeric
+      );
+    END LOOP;
+  END IF;
+
+  RETURN _saved;
+END;
+$$;
+
+DROP POLICY IF EXISTS "Portal owners manage own MLM config" ON public.portal_mlm_config;
+DROP POLICY IF EXISTS "Portal owners view own MLM config" ON public.portal_mlm_config;
+
+CREATE POLICY "Portal admins can view MLM config"
+ON public.portal_mlm_config
+FOR SELECT
+TO authenticated
+USING (public.is_portal_admin(portal_id));
+
+CREATE POLICY "Portal admins can manage MLM config"
+ON public.portal_mlm_config
+FOR ALL
+TO authenticated
+USING (public.is_portal_admin(portal_id))
+WITH CHECK (public.is_portal_admin(portal_id));
+
+DROP POLICY IF EXISTS "Portal owners manage MLM levels" ON public.portal_mlm_levels;
+
+CREATE POLICY "Portal admins can manage MLM levels"
+ON public.portal_mlm_levels
+FOR ALL
+TO authenticated
+USING (public.is_portal_admin(portal_id))
+WITH CHECK (public.is_portal_admin(portal_id));

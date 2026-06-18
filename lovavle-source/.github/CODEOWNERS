@@ -1,0 +1,43 @@
+# CODEOWNERS — revisión obligatoria para archivos críticos
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-security/customizing-your-repository/about-code-owners
+
+# Owner por defecto de TODO el repo (fallback)
+*                                   @bartech82
+
+# 🔐 Migraciones de base de datos (cambios de esquema, RLS, triggers)
+/supabase/migrations/**             @bartech82
+/supabase/config.toml               @bartech82
+
+# 🔐 Edge Functions (lógica backend, secretos, integraciones)
+/supabase/functions/**              @bartech82
+
+# 🔐 Autenticación y rutas protegidas
+/src/hooks/useAuth.tsx              @bartech82
+/src/hooks/useTournamentAuth.tsx    @bartech82
+/src/components/ProtectedRoute.tsx  @bartech82
+/src/pages/Login.tsx                @bartech82
+/src/pages/Registro.tsx             @bartech82
+/src/pages/ResetPassword.tsx        @bartech82
+/src/pages/tournament/TournamentLogin.tsx     @bartech82
+/src/pages/tournament/TournamentRegister.tsx  @bartech82
+
+# 💳 Pagos y wallets (Stripe, Coinsbuy, NowPayments, retiros)
+/src/components/settings/PaymentGatewaySettings.tsx   @bartech82
+/src/components/settings/SandboxGateways.tsx          @bartech82
+/src/components/settings/NowPaymentsSettings.tsx      @bartech82
+/src/components/settings/TradingRoomPlansSettings.tsx @bartech82
+/src/pages/tournament/TournamentWallet.tsx            @bartech82
+
+# 🛡️ Panel admin global (acciones sensibles)
+/src/pages/AdminUsuarios.tsx        @bartech82
+/src/pages/tournament/TournamentAdmin.tsx     @bartech82
+/src/components/admin/**            @bartech82
+
+# ⚙️ Configuración del proyecto / CI / dependencias
+/package.json                       @bartech82
+/package-lock.json                  @bartech82
+/bun.lockb                          @bartech82
+/vite.config.ts                     @bartech82
+/tsconfig*.json                     @bartech82
+/.github/**                         @bartech82
+/.env*                              @bartech82

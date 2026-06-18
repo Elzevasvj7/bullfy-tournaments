@@ -1,0 +1,2 @@
+ALTER TABLE public.ibs DROP CONSTRAINT ibs_status_check;
+ALTER TABLE public.ibs ADD CONSTRAINT ibs_status_check CHECK (status = ANY (ARRAY['draft'::text, 'submitted'::text, 'active'::text, 'inactive'::text]));

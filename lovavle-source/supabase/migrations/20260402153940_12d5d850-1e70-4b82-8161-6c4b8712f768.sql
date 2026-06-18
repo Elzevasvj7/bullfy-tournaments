@@ -1,0 +1,1 @@
+ALTER TABLE public.marketing_campaigns ADD COLUMN notify_user_id uuid DEFAULT NULL;

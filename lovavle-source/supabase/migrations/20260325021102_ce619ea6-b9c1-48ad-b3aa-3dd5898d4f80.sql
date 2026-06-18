@@ -1,0 +1,1 @@
+ALTER TABLE public.ibs ADD COLUMN nombre_comunidad text DEFAULT NULL;

@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: bullfy-tournaments-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bullfy_tournaments
+      POSTGRES_USER: bullfy
+      POSTGRES_PASSWORD: bullfy_dev
+    ports:
+      - "54329:5432"
+    volumes:
+      - bullfy_tournaments_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bullfy -d bullfy_tournaments"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  bullfy_tournaments_pg:

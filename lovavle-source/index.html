@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IB Automated System — Bullfy Limited</title>
+    <meta name="description" content="Sistema automatizado de onboarding y gestión de IBs para Bullfy Limited">
+    <meta name="author" content="Bullfy Limited" />
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#062B63" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Bullfy" />
+    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/0cQAc7NsGQYqJPHIjyP6SEcSL5A2/social-images/social-1773130597213-Logo_Bullfy_peq.webp">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/0cQAc7NsGQYqJPHIjyP6SEcSL5A2/social-images/social-1773130597213-Logo_Bullfy_peq.webp">
+    <meta property="og:title" content="IB Automated System — Bullfy Limited">
+    <meta name="twitter:title" content="IB Automated System — Bullfy Limited">
+    <meta property="og:description" content="Sistema automatizado de onboarding y gestión de IBs para Bullfy Limited">
+    <meta name="twitter:description" content="Sistema automatizado de onboarding y gestión de IBs para Bullfy Limited">
+
+    <!--
+      Portal pre-paint bootstrap
+      ──────────────────────────────────────────────────────────────────────
+      Sets data-portal attribute on <html> from the URL slug, and applies
+      brand color CSS variables inline for known portals to eliminate FOUC.
+
+      Runs synchronously BEFORE the React bundle loads, so the first paint
+      already has the correct branding for visitors who land on /partner/:slug.
+
+      For NEW visitors of known portals, this is the only way to avoid
+      flashing Bullfy blue → brand color (the JS hook fetches branding
+      async and there's ~300ms gap before the correct colors are applied).
+
+      Maintenance contract: when an IB receives custom branding (CSS scoped
+      block in src/index.css or DB row in partner_portal_branding), also add
+      its entry to KNOWN_PORTALS_BRANDING below to honor zero-FOUC promise.
+    -->
+    <script>
+      (function () {
+        // HSL values are pre-computed to match what the React hook would
+        // produce via hexToHSL() over the partner_portal_branding row.
+        // Format: "H S% L%" (space-separated, no commas — Tailwind variant).
+        var KNOWN_PORTALS_BRANDING = {
+          'club-financiero': {
+            // Título de pestaña white-label (sin marca Bullfy).
+            title: 'Club Financiero',
+            // primary_color #33A23F (verde) — debe coincidir con partner_portal_branding.
+            primary: '126 52% 42%',
+            // base oscura (#171717); el gradiente real se aplica en runtime.
+            background: '0 0% 9%',
+            // card_color #000000 (negro).
+            card: '0 0% 0%',
+            // Favicon propio (logo del club en bucket portal-branding).
+            favicon: 'https://dpfqhwcjyecpnvtchudo.supabase.co/storage/v1/object/public/portal-branding/20cc4b20-d293-47a7-b08b-4d21ecce4f37/logos/club-financiero-logo.png'
+          }
+          // Add new white-labels here as they receive custom branding.
+        };
+        // Dominios propios (white-label) que sirven un portal en su raíz.
+        // Mantener sincronizado con src/lib/portalRouting.ts (CUSTOM_DOMAIN_PORTALS).
+        var CUSTOM_DOMAIN_PORTALS = {
+          'clubfinanciero.pro': 'club-financiero',
+          'www.clubfinanciero.pro': 'club-financiero'
+        };
+        try {
+          var m = window.location.pathname.match(/^\/partner\/([^\/]+)/);
+          // Slug desde el path (/partner/:slug) o desde el hostname (dominio propio).
+          var slug = m ? m[1] : (CUSTOM_DOMAIN_PORTALS[window.location.hostname] || null);
+          if (!slug) return;
+          // Always set data-portal so the CSS scoped block in index.css
+          // applies on first paint (typography + neutrals for known portals).
+          document.documentElement.setAttribute('data-portal', slug);
+          var b = KNOWN_PORTALS_BRANDING[slug];
+          if (!b) return;
+          // Título de pestaña white-label: el usuario del portal no ve "Bullfy".
+          if (b.title) {
+            document.title = b.title;
+            var appleTitle = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+            if (appleTitle) appleTitle.setAttribute('content', b.title);
+          }
+          // Apply brand CSS variables inline on <html> — wins over any
+          // CSS rule and over the React hook's later setProperty calls
+          // (which will set the same values, so no flash).
+          var s = document.documentElement.style;
+          if (b.primary)    s.setProperty('--primary', b.primary);
+          if (b.background) s.setProperty('--background', b.background);
+          if (b.card)       s.setProperty('--card', b.card);
+          // Favicon pre-paint: el invitado/usuario del white-label ve su favicon
+          // desde el primer instante (sin flash del de Bullfy).
+          if (b.favicon) {
+            var icons = document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]');
+            for (var i = 0; i < icons.length; i++) icons[i].setAttribute('href', b.favicon);
+          }
+        } catch (e) {
+          // Silent failure — the React hook + CSS scoped block will recover.
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

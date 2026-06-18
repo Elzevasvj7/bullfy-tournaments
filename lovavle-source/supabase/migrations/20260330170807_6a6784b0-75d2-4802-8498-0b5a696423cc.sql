@@ -1,0 +1,1 @@
+ALTER TABLE public.live_ad_campaigns ADD COLUMN cta_url text DEFAULT null;

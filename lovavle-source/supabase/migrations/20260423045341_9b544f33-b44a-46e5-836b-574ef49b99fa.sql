@@ -1,0 +1,2 @@
+ALTER TABLE public.trading_room_subscriptions
+ADD CONSTRAINT trading_room_subscriptions_partner_user_unique UNIQUE (partner_user_id);

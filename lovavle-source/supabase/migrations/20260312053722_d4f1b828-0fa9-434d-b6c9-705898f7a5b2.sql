@@ -1,0 +1,1 @@
+ALTER TABLE public.ibs ADD COLUMN direccion_empresa text;

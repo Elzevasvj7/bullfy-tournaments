@@ -1,0 +1,43 @@
+project_id = "dpfqhwcjyecpnvtchudo"
+
+[functions.shotstack-webhook]
+verify_jwt = false
+
+[functions.tournament-highlight-webhook]
+verify_jwt = false
+
+[functions.tournament-pay-webhook]
+verify_jwt = false
+
+[functions.tournament-auth-request-otp]
+verify_jwt = false
+
+[functions.tournament-auth-verify-otp]
+verify_jwt = false
+
+[functions.tournament-auth-register]
+verify_jwt = false
+
+[functions.tournament-auth-login]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.membership-reminders]
+verify_jwt = false
+
+[functions.nowpayments-callback]
+verify_jwt = false
+
+[functions.nowpayments-payout-callback]
+verify_jwt = false
+
+[functions.telegram-webhook]
+verify_jwt = false
+
+[functions.check-telegram-link]
+verify_jwt = false
+
+[functions.generate-telegram-link-token]
+verify_jwt = false

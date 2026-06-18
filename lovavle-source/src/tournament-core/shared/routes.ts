@@ -1,0 +1,16 @@
+export const tournamentRoutes = {
+  lobby: "/tournament",
+  rankings: "/tournament/rankings",
+  clans: "/tournament/clans",
+  versus: "/tournament/versus",
+  create: "/tournament/create",
+  wallet: "/tournament/wallet",
+  dashboard: "/tournament/dashboard",
+  login: "/tournament/login",
+  register: "/tournament/register",
+  poses: "/tournament/poses",
+  kyc: "/tournament/kyc",
+  verify: "/tournament/verify",
+  clan: (clanId: string) => `/tournament/clans/${clanId}`,
+  publicProfile: (username: string) => `/tournament/p/${username}`,
+} as const;
