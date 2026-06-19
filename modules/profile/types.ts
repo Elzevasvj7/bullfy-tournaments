@@ -6,10 +6,28 @@ export type TraderProfile = {
   handle: string;
   clan: string;
   avatarUrl: string;
+  avatar3dUrl?: string | null;
+  avatarConfig?: Record<string, unknown> | null;
+  avatarProvider?: string | null;
+  avaturnUserId?: string | null;
+  avaturnAvatarId?: string | null;
+  preferredPose?: string | null;
   country: string;
   joinedAt: string;
   bio: string;
   verified: boolean;
+};
+
+export type AvatarProfile = {
+  avatarConfig: Record<string, unknown>;
+  avatarProvider: string | null;
+  avatarStorageBucket?: string | null;
+  avatarStoragePath?: string | null;
+  avatarUrl: string | null;
+  avaturnAvatarId: string | null;
+  avaturnUserId: string | null;
+  preferredPose: string;
+  updatedAt: string | null;
 };
 
 export type ProfileWallet = Pick<

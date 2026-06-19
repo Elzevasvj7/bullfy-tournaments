@@ -38,11 +38,8 @@ export async function POST() {
       paymentIntentId,
     });
   } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "Invoice creation failed.";
-
     await markTopUpCreationFailed({
-      error: message,
+      error: error instanceof Error ? error.message : "Invoice creation failed.",
       paymentIntentId,
     });
 

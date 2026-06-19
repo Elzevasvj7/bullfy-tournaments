@@ -482,6 +482,25 @@
   z-index: 1;
 }
 
+.avaturn-sdk-shell,
+.avaturn-sdk-host {
+  container-type: size;
+}
+
+.avaturn-sdk-host > iframe,
+#avaturn-sdk-iframe,
+.avaturn-iframe {
+  border: 0 !important;
+  display: block !important;
+  height: 100% !important;
+  min-height: 30rem !important;
+  width: 100% !important;
+}
+
+.avaturn-sdk-host > iframe {
+  background: #020713;
+}
+
 
 a.animated-button:link, a.animated-button:visited {
 	position: relative;

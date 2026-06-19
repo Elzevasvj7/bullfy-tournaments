@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   BadgeCheck,
@@ -67,20 +68,24 @@ const tournamentResultLabel: Record<
   eliminated: "Eliminado",
 };
 
-const versusStatusLabel: Record<ProfileDashboard["versus"][number]["status"], string> =
-  {
-    pending: "Pendiente",
-    live: "En vivo",
-    finished: "Finalizado",
-  };
+const versusStatusLabel: Record<
+  ProfileDashboard["versus"][number]["status"],
+  string
+> = {
+  pending: "Pendiente",
+  live: "En vivo",
+  finished: "Finalizado",
+};
 
-const versusResultLabel: Record<ProfileDashboard["versus"][number]["result"], string> =
-  {
-    win: "Victoria",
-    loss: "Derrota",
-    draw: "Empate",
-    active: "En curso",
-  };
+const versusResultLabel: Record<
+  ProfileDashboard["versus"][number]["result"],
+  string
+> = {
+  win: "Victoria",
+  loss: "Derrota",
+  draw: "Empate",
+  active: "En curso",
+};
 
 const membershipLabel = {
   free: "Free",
@@ -245,7 +250,11 @@ export function ProfileDashboardView({
           </section>
 
           <section className="mt-5 grid gap-5 xl:grid-cols-[1.15fr_0.85fr]">
-            <Panel title="Ranking y estadisticas" actionLabel="Ver ranking" href="/rankings">
+            <Panel
+              title="Ranking y estadisticas"
+              actionLabel="Ver ranking"
+              href="/rankings"
+            >
               <div className="grid gap-4 md:grid-cols-[0.8fr_1.2fr]">
                 <div
                   className={cn(
@@ -255,12 +264,22 @@ export function ProfileDashboardView({
                 >
                   <div className="pointer-events-none absolute -right-7 -top-7 size-28 rounded-full bg-white/8 blur-2xl" />
                   <div className="relative z-10">
-                    <p className={cn("text-xs font-black uppercase tracking-[0.16em]", globalRank.labelClass)}>
+                    <p
+                      className={cn(
+                        "text-xs font-black uppercase tracking-[0.16em]",
+                        globalRank.labelClass,
+                      )}
+                    >
                       Ranking global
                     </p>
                     <p className="mt-3 flex items-end gap-2 text-6xl font-black leading-none text-white">
                       #{performance.globalRank || "-"}
-                      <span className={cn("mb-1 rounded-md border px-2 py-1 text-[10px] uppercase tracking-[0.16em]", globalRank.badgeClass)}>
+                      <span
+                        className={cn(
+                          "mb-1 rounded-md border px-2 py-1 text-[10px] uppercase tracking-[0.16em]",
+                          globalRank.badgeClass,
+                        )}
+                      >
                         {globalRank.label}
                       </span>
                     </p>
@@ -324,7 +343,11 @@ export function ProfileDashboardView({
               </div>
             </Panel>
 
-            <AvatarIdentityCard traderName={trader.name} initials={initials} />
+            <AvatarIdentityCard
+              traderName={trader.name}
+              initials={initials}
+              trader={trader}
+            />
           </section>
 
           <section className="mt-5 grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
@@ -352,7 +375,10 @@ export function ProfileDashboardView({
                     <Shield className="size-5 text-bullfy-neon-green" />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <MiniStat label="Rank clan" value={`#${clan.rank ?? "-"}`} />
+                    <MiniStat
+                      label="Rank clan"
+                      value={`#${clan.rank ?? "-"}`}
+                    />
                     <MiniStat
                       label="Miembros"
                       value={String(clan.membersCount ?? "-")}
@@ -368,7 +394,11 @@ export function ProfileDashboardView({
               )}
             </Panel>
 
-            <Panel title="Cuentas MT5 conectadas" actionLabel="Conectar" href="#">
+            <Panel
+              title="Cuentas MT5 conectadas"
+              actionLabel="Conectar"
+              href="#"
+            >
               <div className="grid gap-3">
                 {dashboard.mt5Accounts.map((account) => (
                   <div
@@ -415,17 +445,26 @@ export function ProfileDashboardView({
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
                           <Badge className="border-bullfy-neon-blue/30 bg-bullfy-neon-blue/10 text-bullfy-neon-blue">
-                            {tournamentStatusLabel[dashboard.tournaments[0].status]}
+                            {
+                              tournamentStatusLabel[
+                                dashboard.tournaments[0].status
+                              ]
+                            }
                           </Badge>
                           <Badge className="border-white/10 bg-white/5 text-slate-300">
-                            {tournamentResultLabel[dashboard.tournaments[0].result]}
+                            {
+                              tournamentResultLabel[
+                                dashboard.tournaments[0].result
+                              ]
+                            }
                           </Badge>
                         </div>
                         <p className="mt-3 truncate text-xl font-black text-white">
                           {dashboard.tournaments[0].tournamentName}
                         </p>
                         <p className="mt-1 text-sm text-slate-500">
-                          {dashboard.tournaments[0].participants} traders / Prize $
+                          {dashboard.tournaments[0].participants} traders /
+                          Prize $
                           {compactMoneyFormatter.format(
                             dashboard.tournaments[0].prizeUsd,
                           )}
@@ -457,7 +496,9 @@ export function ProfileDashboardView({
                           tournament.participants
                         } traders`}
                         result={
-                          tournament.rank > 0 ? `#${tournament.rank}` : "Sin rank"
+                          tournament.rank > 0
+                            ? `#${tournament.rank}`
+                            : "Sin rank"
                         }
                         score={`${tournament.scorePercent > 0 ? "+" : ""}${
                           tournament.scorePercent
@@ -505,7 +546,11 @@ export function ProfileDashboardView({
           </section>
 
           <section className="mt-5 grid gap-5 xl:grid-cols-[1fr_22rem]">
-            <Panel title="Trades recientes" actionLabel="Ver wallet" href="/wallet">
+            <Panel
+              title="Trades recientes"
+              actionLabel="Ver wallet"
+              href="/wallet"
+            >
               <div className="grid gap-3 md:grid-cols-3">
                 {dashboard.recentTrades.map((trade) => (
                   <div
@@ -554,9 +599,21 @@ export function ProfileDashboardView({
                   icon={Trophy}
                   label="Crear torneo"
                 />
-                <QuickAction href="/wallet" icon={Wallet} label="Retirar fondos" />
-                <QuickAction href="/versus" icon={Swords} label="Crear versus" />
-                <QuickAction href="/profile?edit=1" icon={UserRound} label="Editar perfil" />
+                <QuickAction
+                  href="/wallet"
+                  icon={Wallet}
+                  label="Retirar fondos"
+                />
+                <QuickAction
+                  href="/versus"
+                  icon={Swords}
+                  label="Crear versus"
+                />
+                <QuickAction
+                  href="/profile?edit=1"
+                  icon={UserRound}
+                  label="Editar perfil"
+                />
               </div>
             </Panel>
           </section>
@@ -625,7 +682,8 @@ function getRankPresentation(rank: number): RankPresentation {
 
   if (rank > 0 && rank <= 10) {
     return {
-      badgeClass: "border-bullfy-neon-green/35 bg-bullfy-neon-green/10 text-bullfy-neon-green",
+      badgeClass:
+        "border-bullfy-neon-green/35 bg-bullfy-neon-green/10 text-bullfy-neon-green",
       cardClass:
         "border-bullfy-neon-green/24 bg-[radial-gradient(circle_at_22%_0%,rgba(182,255,61,0.15),transparent_34%),linear-gradient(135deg,rgba(182,255,61,0.08),rgba(7,19,29,0.9))]",
       label: "Top 10",
@@ -634,7 +692,8 @@ function getRankPresentation(rank: number): RankPresentation {
   }
 
   return {
-    badgeClass: "border-bullfy-neon-blue/35 bg-bullfy-neon-blue/10 text-bullfy-neon-blue",
+    badgeClass:
+      "border-bullfy-neon-blue/35 bg-bullfy-neon-blue/10 text-bullfy-neon-blue",
     cardClass:
       "border-bullfy-neon-blue/20 bg-[radial-gradient(circle_at_22%_0%,rgba(0,229,255,0.15),transparent_34%),linear-gradient(135deg,rgba(0,229,255,0.08),rgba(7,19,29,0.9))]",
     label: "Ranqueando",
@@ -656,7 +715,9 @@ function RankStrip({
       <span className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
         {label}
       </span>
-      <span className={cn("font-mono text-sm font-black", presentation.labelClass)}>
+      <span
+        className={cn("font-mono text-sm font-black", presentation.labelClass)}
+      >
         {value}
       </span>
     </div>
@@ -666,10 +727,14 @@ function RankStrip({
 function AvatarIdentityCard({
   initials,
   traderName,
+  trader,
 }: {
   initials: string;
   traderName: string;
+  trader: ProfileDashboard["trader"];
 }) {
+  const hasAvatar = Boolean(trader.avatar3dUrl);
+
   return (
     <section className="relative overflow-hidden rounded-lg border border-bullfy-neon-blue/20 bg-[radial-gradient(circle_at_50%_0%,rgba(0,229,255,0.18),transparent_38%),linear-gradient(180deg,rgba(7,19,29,0.96),rgba(3,9,17,0.98))] p-5 shadow-glass-blue backdrop-blur-xl">
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-bullfy-neon-blue/60" />
@@ -687,8 +752,14 @@ function AvatarIdentityCard({
             ArenaTV y perfil publico.
           </p>
         </div>
-        <Badge className="border-amber-300/30 bg-amber-300/10 text-amber-100">
-          Proximo
+        <Badge
+          className={
+            hasAvatar
+              ? "border-bullfy-neon-green/30 bg-bullfy-neon-green/10 text-bullfy-neon-green"
+              : "border-amber-300/30 bg-amber-300/10 text-amber-100"
+          }
+        >
+          {hasAvatar ? "Activo" : "Pendiente"}
         </Badge>
       </div>
 
@@ -702,8 +773,14 @@ function AvatarIdentityCard({
         </div>
 
         <div className="grid gap-3">
-          <MiniStat label="Estado" value="Avatar no creado" />
-          <MiniStat label="Uso futuro" value="ArenaTV, podio, perfil" />
+          <MiniStat
+            label="Estado"
+            value={hasAvatar ? "Avatar creado" : "Avatar no creado"}
+          />
+          <MiniStat
+            label="Uso"
+            value={hasAvatar ? "ArenaTV, podio, perfil" : "Listo para crear"}
+          />
           <MiniStat label="Trader" value={traderName} />
           <Link
             href="/profile/avatar"
@@ -713,7 +790,7 @@ function AvatarIdentityCard({
             )}
           >
             <Wand2 className="size-4" />
-            Crear avatar
+            {hasAvatar ? "Editar avatar" : "Crear avatar"}
           </Link>
         </div>
       </div>

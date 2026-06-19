@@ -20,13 +20,27 @@ function getPoolMax() {
   return 2;
 }
 
+function shouldUseSsl(databaseUrl: string | undefined) {
+  if (!databaseUrl) {
+    return false;
+  }
+
+  const url = new URL(databaseUrl);
+  const host = url.hostname.toLowerCase();
+
+  return !["localhost", "127.0.0.1", "::1"].includes(host);
+}
+
 export function getPostgresPool() {
   if (!globalThis.bullfyPgPool) {
+    const databaseUrl = getDatabaseUrl();
+
     globalThis.bullfyPgPool = new Pool({
-      connectionString: getDatabaseUrl(),
+      connectionString: databaseUrl,
       connectionTimeoutMillis: 10_000,
       idleTimeoutMillis: 10_000,
       max: getPoolMax(),
+      ssl: shouldUseSsl(databaseUrl) ? { rejectUnauthorized: false } : undefined,
     });
   }
 

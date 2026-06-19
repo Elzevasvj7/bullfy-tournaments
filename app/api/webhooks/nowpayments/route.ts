@@ -38,7 +38,6 @@ export async function POST(request: Request) {
   }
 
   const rawBody = await request.text();
-  console.log(rawBody);
   const signature = request.headers.get("x-nowpayments-sig");
 
   if (!verifyNowPaymentsSignature({ ipnSecret, rawBody, signature })) {

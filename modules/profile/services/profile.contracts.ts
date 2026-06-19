@@ -5,6 +5,12 @@ export type ExternalProfileDashboardDto = {
     handle: string;
     clan_name: string;
     avatar_url: string;
+    avatar_3d_url?: string | null;
+    avatar_config?: Record<string, unknown> | null;
+    avatar_provider?: string | null;
+    avaturn_user_id?: string | null;
+    avaturn_avatar_id?: string | null;
+    preferred_pose?: string | null;
     country_code: string;
     joined_at: string;
     bio: string;

@@ -13,6 +13,13 @@ type DemoTraderSessionRow = {
   clan: string | null;
   country: string | null;
   membership: string;
+  avatar_url: string | null;
+  avatar_3d_url: string | null;
+  avatar_config: Record<string, unknown> | null;
+  avatar_provider: string | null;
+  avaturn_user_id: string | null;
+  avaturn_avatar_id: string | null;
+  preferred_pose: string | null;
   created_at: Date;
   best_rank: number | null;
   current_rank: number | null;
@@ -44,6 +51,13 @@ export async function getCurrentSessionUser(): Promise<CurrentSessionUser | null
           tr.clan,
           tr.country,
           tr.membership,
+          tr.avatar_url,
+          tr.avatar_3d_url,
+          tr.avatar_config,
+          tr.avatar_provider,
+          tr.avaturn_user_id,
+          tr.avaturn_avatar_id,
+          tr.preferred_pose,
           tr.created_at,
           min(nullif(p.rank, 0))::int as best_rank,
           min(nullif(p.rank, 0)) filter (where t.status = 'live')::int as current_rank,
@@ -127,7 +141,12 @@ function mapDemoTraderSessionRow(row: DemoTraderSessionRow): CurrentSessionUser 
   const membershipTier = row.membership === "elite" ? "elite" : "free";
 
   return {
-    avatarUrl: "/avatars/karlos.svg",
+    avatar3dUrl: row.avatar_3d_url,
+    avatarConfig: row.avatar_config,
+    avatarProvider: row.avatar_provider,
+    avatarUrl: row.avatar_url ?? "/avatars/karlos.svg",
+    avaturnAvatarId: row.avaturn_avatar_id,
+    avaturnUserId: row.avaturn_user_id,
     bmoneyBalance: Number(row.wallet_demo_balance),
     bullfyPoints: Number(row.wallet_bullfy_points),
     clan: row.clan ?? undefined,
@@ -138,6 +157,7 @@ function mapDemoTraderSessionRow(row: DemoTraderSessionRow): CurrentSessionUser 
     membershipStatus: "active",
     membershipTier,
     name: row.name,
+    preferredPose: row.preferred_pose ?? "idle",
     referralCode: createReferralCode(row.handle),
     stats: {
       currentTournamentRank: row.current_rank ?? row.best_rank ?? 0,

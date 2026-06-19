@@ -29,7 +29,7 @@ import {
   verifyRegistrationOtp,
 } from "../services/auth.client";
 import type { AuthVerificationChannel } from "../types";
-import { createBrowserSupabaseClient } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/browser";
 
 type FormState = {
   fullName: string;
@@ -60,7 +60,7 @@ export function RegisterForm() {
   const [smsVerified, setSmsVerified] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pendingAction, setPendingAction] = useState<string | null>(null);
-  const supabase = createBrowserSupabaseClient();
+  const supabase = createClient();
   const canRegister = useMemo(
     () => emailVerified && smsVerified,
     [emailVerified, smsVerified],

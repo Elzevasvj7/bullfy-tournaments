@@ -29,6 +29,12 @@ export type CurrentSessionUser = {
   handle: string;
   clan?: string;
   avatarUrl?: string;
+  avatar3dUrl?: string | null;
+  avatarConfig?: Record<string, unknown> | null;
+  avatarProvider?: string | null;
+  avaturnUserId?: string | null;
+  avaturnAvatarId?: string | null;
+  preferredPose?: string | null;
   country?: string;
   membershipTier: "free" | "elite";
   membershipStatus: "active" | "inactive" | "pending";
