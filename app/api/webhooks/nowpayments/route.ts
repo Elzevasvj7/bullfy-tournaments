@@ -27,7 +27,7 @@ const completedStatuses = new Set(["confirmed", "finished"]);
 const failedStatuses = new Set(["expired", "failed", "refunded"]);
 
 export async function POST(request: Request) {
-  console.log("POST", request.body);
+  
   const ipnSecret = process.env.NOWPAYMENTS_IPN_SECRET;
 
   if (!ipnSecret) {
@@ -38,6 +38,7 @@ export async function POST(request: Request) {
   }
 
   const rawBody = await request.text();
+  console.log(rawBody);
   const signature = request.headers.get("x-nowpayments-sig");
 
   if (!verifyNowPaymentsSignature({ ipnSecret, rawBody, signature })) {
