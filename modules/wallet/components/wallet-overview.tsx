@@ -80,9 +80,9 @@ export function WalletUsdPage({
                 Balance usado para torneos Elite, premios en USD y retiros
                 cuando el modulo de payout este activo.
               </p>
-              <div>
+              {/* <div>
                 <a className="btn animated-button victoria-one" href="https://victoria.one/bullfy">HOLA</a>
-              </div>
+              </div> */}
             </div>
 
             <div className="grid min-w-0 gap-3 sm:grid-cols-3 lg:w-[32rem]">

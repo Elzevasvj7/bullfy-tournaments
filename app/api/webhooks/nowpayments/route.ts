@@ -27,6 +27,7 @@ const completedStatuses = new Set(["confirmed", "finished"]);
 const failedStatuses = new Set(["expired", "failed", "refunded"]);
 
 export async function POST(request: Request) {
+  console.log("POST", request.body);
   const ipnSecret = process.env.NOWPAYMENTS_IPN_SECRET;
 
   if (!ipnSecret) {
@@ -46,40 +47,29 @@ export async function POST(request: Request) {
     );
   }
 
-  let payload: NowPaymentsWebhookPayload;
+  const payload = parseWebhookPayload(rawBody);
 
-  try {
-    payload = JSON.parse(rawBody) as NowPaymentsWebhookPayload;
-  } catch {
+  if (!payload) {
     return NextResponse.json(
       { error: "Invalid NOWPayments webhook JSON." },
       { status: 400 },
     );
   }
-  const eventKey = getWebhookEventKey(payload, rawBody);
-  const insertedEvent = await queryOne<{ id: string }>(
-    `
-      insert into webhook_events (id, provider, event_key, headers, payload)
-      values ($1, 'nowpayments', $2, $3::jsonb, $4::jsonb)
-      on conflict (provider, event_key) do nothing
-      returning id
-    `,
-    [
-      `wh_${randomUUID()}`,
-      eventKey,
-      JSON.stringify(headersToObject(request.headers)),
-      rawBody,
-    ],
-  );
 
-  if (!insertedEvent) {
+  const webhookEventId = await insertWebhookEvent({
+    headers: request.headers,
+    payload,
+    rawBody,
+  });
+
+  if (!webhookEventId) {
     return NextResponse.json({ duplicate: true, ok: true });
   }
 
   const paymentIntentId = getPaymentIntentIdFromOrderId(payload.order_id);
 
   if (!paymentIntentId) {
-    await markWebhookProcessed(insertedEvent.id);
+    await markWebhookProcessed(webhookEventId);
 
     return NextResponse.json(
       { error: "NOWPayments order_id is not a Bullfy wallet order." },
@@ -90,7 +80,7 @@ export async function POST(request: Request) {
   const paymentIntent = await getPaymentIntentById(paymentIntentId);
 
   if (!paymentIntent) {
-    await markWebhookProcessed(insertedEvent.id);
+    await markWebhookProcessed(webhookEventId);
 
     return NextResponse.json(
       { error: "Payment intent not found." },
@@ -103,11 +93,11 @@ export async function POST(request: Request) {
 
   if (providerPaymentId) {
     const verifiedPayment = await fetchNowPaymentsPayment(providerPaymentId);
-    const expectedAmount = Number(paymentIntent.amount_usd);
+
     providerStatus = verifiedPayment.status ?? providerStatus;
 
     if (verifiedPayment.orderId !== payload.order_id) {
-      await markWebhookProcessed(insertedEvent.id);
+      await markWebhookProcessed(webhookEventId);
 
       return NextResponse.json(
         { error: "NOWPayments order verification failed." },
@@ -116,8 +106,12 @@ export async function POST(request: Request) {
     }
 
     if (
-      verifiedPayment.priceAmount !== undefined &&
-      Math.abs(verifiedPayment.priceAmount - expectedAmount) > 0.01
+      hasAmountMismatch({
+        expectedAmount: paymentIntent.amount_usd,
+        expectedCurrency: "usd",
+        providerAmount: verifiedPayment.priceAmount,
+        providerCurrency: verifiedPayment.priceCurrency,
+      })
     ) {
       await failPaymentIntent({
         paymentIntentId,
@@ -125,7 +119,7 @@ export async function POST(request: Request) {
         providerStatus: "amount_mismatch",
         rawPayload: payload,
       });
-      await markWebhookProcessed(insertedEvent.id);
+      await markWebhookProcessed(webhookEventId);
 
       return NextResponse.json(
         { error: "NOWPayments amount verification failed." },
@@ -143,7 +137,7 @@ export async function POST(request: Request) {
       rawPayload: payload,
       traderId: paymentIntent.trader_id,
     });
-    await markWebhookProcessed(insertedEvent.id);
+    await markWebhookProcessed(webhookEventId);
 
     return NextResponse.json({ credited: true, ok: true });
   }
@@ -164,9 +158,62 @@ export async function POST(request: Request) {
     });
   }
 
-  await markWebhookProcessed(insertedEvent.id);
+  await markWebhookProcessed(webhookEventId);
 
   return NextResponse.json({ ok: true, providerStatus });
+}
+
+function parseWebhookPayload(rawBody: string) {
+  try {
+    return JSON.parse(rawBody) as NowPaymentsWebhookPayload;
+  } catch {
+    return null;
+  }
+}
+
+function hasAmountMismatch({
+  expectedAmount,
+  expectedCurrency,
+  providerAmount,
+  providerCurrency,
+}: {
+  expectedAmount: string;
+  expectedCurrency: string;
+  providerAmount: number | undefined;
+  providerCurrency: string | undefined;
+}) {
+  if (providerCurrency !== expectedCurrency || providerAmount === undefined) {
+    return true;
+  }
+
+  return Math.abs(providerAmount - Number(expectedAmount)) > 0.01;
+}
+
+async function insertWebhookEvent({
+  headers,
+  payload,
+  rawBody,
+}: {
+  headers: Headers;
+  payload: NowPaymentsWebhookPayload;
+  rawBody: string;
+}) {
+  const event = await queryOne<{ id: string }>(
+    `
+      insert into webhook_events (id, provider, event_key, headers, payload)
+      values ($1, 'nowpayments', $2, $3::jsonb, $4::jsonb)
+      on conflict (provider, event_key) do nothing
+      returning id
+    `,
+    [
+      `wh_${randomUUID()}`,
+      getWebhookEventKey(payload, rawBody),
+      JSON.stringify(headersToObject(headers)),
+      rawBody,
+    ],
+  );
+
+  return event?.id ?? null;
 }
 
 async function markWebhookProcessed(webhookEventId: string) {

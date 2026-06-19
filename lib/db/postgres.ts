@@ -7,17 +7,26 @@ declare global {
 }
 
 function getDatabaseUrl() {
-  return (
-    process.env.DATABASE_URL ??
-    "postgres://bullfy:bullfy_dev@localhost:54329/bullfy_tournaments"
-  );
+  return process.env.DATABASE_URL;
+}
+
+function getPoolMax() {
+  const configuredMax = Number(process.env.POSTGRES_POOL_MAX);
+
+  if (Number.isInteger(configuredMax) && configuredMax > 0) {
+    return configuredMax;
+  }
+
+  return 2;
 }
 
 export function getPostgresPool() {
   if (!globalThis.bullfyPgPool) {
     globalThis.bullfyPgPool = new Pool({
       connectionString: getDatabaseUrl(),
-      max: 8,
+      connectionTimeoutMillis: 10_000,
+      idleTimeoutMillis: 10_000,
+      max: getPoolMax(),
     });
   }
 

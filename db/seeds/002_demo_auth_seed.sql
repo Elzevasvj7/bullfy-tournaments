@@ -57,6 +57,11 @@ on conflict (id) do update set
   mt5_login = excluded.mt5_login,
   mt5_password = excluded.mt5_password;
 
+insert into wallet_accounts (trader_id, demo_balance, bullfy_points)
+select id, 1680, 538
+from demo_traders
+on conflict (trader_id) do nothing;
+
 delete from demo_trade_positions pos
 using demo_tournament_participants participant
 where pos.participant_id = participant.id

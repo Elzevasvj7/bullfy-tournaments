@@ -15,6 +15,7 @@ export type NowPaymentsPayment = {
   orderId?: string;
   paymentId?: string;
   priceAmount?: number;
+  priceCurrency?: string;
   status?: string;
   raw: unknown;
 };
@@ -33,6 +34,7 @@ type NowPaymentsPaymentResponse = {
   payment_id?: string | number;
   payment_status?: string;
   price_amount?: number | string;
+  price_currency?: string;
 };
 
 export class NowPaymentsConfigError extends Error {
@@ -172,6 +174,7 @@ export async function fetchNowPaymentsPayment(
     orderId: payload?.order_id,
     paymentId: payload?.payment_id?.toString(),
     priceAmount: toNumber(payload?.price_amount),
+    priceCurrency: payload?.price_currency?.toLowerCase(),
     raw: payload,
     status: payload?.payment_status,
   };

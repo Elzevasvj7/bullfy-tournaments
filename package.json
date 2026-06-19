@@ -7,7 +7,10 @@
     "build": "next build",
     "db:up": "docker compose up -d postgres",
     "db:migrate": "powershell -ExecutionPolicy Bypass -File scripts/db-migrate.ps1",
+    "db:migrate:remote": "node scripts/db-apply.mjs migrations",
     "db:seed": "powershell -ExecutionPolicy Bypass -File scripts/db-seed.ps1",
+    "db:seed:remote": "node scripts/db-apply.mjs seeds",
+    "db:remote": "pnpm db:migrate:remote && pnpm db:seed:remote",
     "db:demo": "pnpm db:up && pnpm db:migrate && pnpm db:seed",
     "start": "next start",
     "lint": "eslint"
