@@ -82,7 +82,7 @@ export function ClanCreateView({
             </div>
           </div>
 
-          <div className="relative rounded-3xl border border-[#00E5FF]/20 bg-black/30 p-5 shadow-[0_0_34px_rgba(0,229,255,0.12)]">
+          <div className="relative rounded-none border border-[#00E5FF]/20 bg-black/30 p-5 shadow-[0_0_34px_rgba(0,229,255,0.12)]">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.22em] text-gray-500">
@@ -92,7 +92,7 @@ export function ClanCreateView({
                   [{previewTag}] {previewName}
                 </h2>
               </div>
-              <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[#00E5FF]/30 bg-[#00E5FF]/10 text-lg font-black text-[#00E5FF]">
+              <div className="flex size-14 shrink-0 items-center justify-center rounded-none border border-[#00E5FF]/30 bg-[#00E5FF]/10 text-lg font-black text-[#00E5FF]">
                 {previewTag.slice(0, 2)}
               </div>
             </div>
@@ -120,7 +120,7 @@ export function ClanCreateView({
                 Fundar clan
               </h2>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-right">
+            <div className="rounded-none border border-white/10 bg-black/25 px-4 py-3 text-right">
               <p className="t-mono text-lg font-black text-[#B6FF3D]">
                 {previewTag}
               </p>
@@ -178,9 +178,9 @@ export function ClanCreateView({
               </div>
 
               <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-                <div className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/25 p-4">
+                <div className="flex items-center justify-between gap-4 rounded-none border border-white/10 bg-black/25 p-4">
                   <div className="flex items-start gap-3">
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[#00E5FF]/25 bg-[#00E5FF]/10 text-[#00E5FF]">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-none border border-[#00E5FF]/25 bg-[#00E5FF]/10 text-[#00E5FF]">
                       {isPublic ? (
                         <Eye className="size-5" />
                       ) : (
@@ -234,7 +234,7 @@ export function ClanCreateView({
 
 function LaunchStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-black/25 p-4">
+    <div className="rounded-none border border-white/10 bg-black/25 p-4">
       <p className="t-display text-2xl font-black text-white">{value}</p>
       <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-gray-500">
         {label}
@@ -245,7 +245,7 @@ function LaunchStat({ label, value }: { label: string; value: string }) {
 
 function PreviewMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#060B1F]/60 p-3 text-center">
+    <div className="rounded-none border border-white/10 bg-[#060B1F]/60 p-3 text-center">
       <p className="t-display text-base font-black text-white">{value}</p>
       <p className="mt-1 text-[9px] font-black uppercase tracking-[0.14em] text-gray-500">
         {label}
@@ -256,7 +256,7 @@ function PreviewMetric({ label, value }: { label: string; value: string }) {
 
 function FounderCheck({ text }: { text: string }) {
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-white/5 bg-black/20 p-3 text-sm text-gray-300">
+    <div className="flex items-center gap-3 rounded-none border border-white/5 bg-black/20 p-3 text-sm text-gray-300">
       <CheckCircle2 className="size-4 shrink-0 text-[#B6FF3D]" />
       <span>{text}</span>
     </div>
@@ -273,9 +273,9 @@ function WarPrep({
   value: string;
 }) {
   return (
-    <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/5 bg-black/20 p-3">
+    <div className="flex items-center justify-between gap-3 rounded-none border border-white/5 bg-black/20 p-3">
       <div className="flex items-center gap-3">
-        <div className="flex size-9 items-center justify-center rounded-xl border border-[#00E5FF]/25 bg-[#00E5FF]/10 text-[#00E5FF]">
+        <div className="flex size-9 items-center justify-center rounded-none border border-[#00E5FF]/25 bg-[#00E5FF]/10 text-[#00E5FF]">
           <Icon className="size-4" />
         </div>
         <p className="text-sm font-bold text-white">{label}</p>

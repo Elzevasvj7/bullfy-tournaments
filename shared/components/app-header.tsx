@@ -153,7 +153,7 @@ export function AppHeader({ active = "torneos", user = null }: AppHeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 px-3 pt-3">
-      <div className="mx-auto w-full max-w-375 rounded-2xl border border-bullfy-glass-border bg-bullfy-panel/70 shadow-glass-blue backdrop-blur-xl">
+      <div className="mx-auto w-full max-w-375 border border-bullfy-glass-border bg-bullfy-panel/72 shadow-glass-blue backdrop-blur-xl">
         <div className="flex min-h-16 items-center justify-between gap-3 px-3 py-2 sm:px-5">
           <Logo />
 
@@ -172,7 +172,7 @@ export function AppHeader({ active = "torneos", user = null }: AppHeaderProps) {
               href="/tournaments/create"
               className={cn(
                 buttonVariants({ size: "lg", variant: "neonGreen" }),
-                "text-[11px] font-black uppercase tracking-[0.12em]",
+                "text-[11px] font-black border bg-transparent uppercase tracking-[0.12em] polygon-shape [--polygon-border:#B6FF3D] before:shadow-[0_0_18px_rgba(182,255,61,0.45)] before:hover:shadow-[0_0_26px_rgba(182,255,61,0.75)]",
               )}
             >
               <Zap className="size-3.5" />
@@ -223,7 +223,7 @@ export function AppHeader({ active = "torneos", user = null }: AppHeaderProps) {
               aria-expanded={mobileOpen}
               aria-label={mobileOpen ? "Cerrar menu" : "Abrir menu"}
               onClick={() => setMobileOpen((current) => !current)}
-              className="flex size-10 items-center justify-center rounded-lg border border-white/10 bg-black/20 text-slate-300 transition hover:border-cyan-300/30 hover:text-white 2xl:hidden"
+              className="polygon-shape flex size-10 items-center justify-center text-slate-300 transition [--polygon-bg:rgba(0,0,0,0.20)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(103,232,249,0.38)] hover:text-white 2xl:hidden"
             >
               {mobileOpen ? (
                 <X className="size-4" />
@@ -253,7 +253,7 @@ export function AppHeader({ active = "torneos", user = null }: AppHeaderProps) {
                 onClick={() => setMobileOpen(false)}
                 className={cn(
                   buttonVariants({ size: "lg", variant: "neonGreen" }),
-                  "h-10 justify-center text-[11px] font-black uppercase tracking-[0.12em]",
+                  "h-10 justify-center text-[11px] font-black uppercase tracking-[0.12em] [--polygon-shape-bg:red]",
                 )}
               >
                 <Zap className="size-3.5" />
@@ -301,10 +301,10 @@ function HeaderNavItem({
     <Link
       href={item.href}
       onClick={onClick}
-      className={`group flex h-10 min-w-0 items-center justify-center gap-1.5  px-3 text-[11px] font-black uppercase tracking-[0.12em] transition ${
-      active
-            ? "text-[#00E5FF] border-b-2 border-[#00E5FF]"
-            : "text-gray-400 hover:text-white"
+      className={`polygon-shape group flex h-10 min-w-0 items-center justify-center gap-1.5 px-4 text-[11px] font-black uppercase tracking-[0.12em] transition [--polygon-border:transparent] hover:[--polygon-hover-bg:rgba(255,255,255,0.06)] ${
+        active
+          ? "text-[#00E5FF] [--polygon-border:rgba(0,229,255,0.36)] [--polygon-bg:rgba(0,229,255,0.08)]"
+          : "text-gray-400 hover:text-white hover:[--polygon-bg:rgba(255,255,255,0.06)]"
       }`}
     >
       <span className="truncate">{item.label}</span>
@@ -334,7 +334,7 @@ function NotificationMenu({
         aria-expanded={open}
         aria-label="Notificaciones"
         onClick={() => setOpen(!open)}
-        className="relative flex size-10 items-center justify-center rounded-lg border border-white/10 bg-black/20 text-slate-300 transition hover:border-cyan-300/30 hover:text-white"
+        className="polygon-shape relative flex size-10 items-center justify-center text-slate-300 transition [--polygon-bg:rgba(0,0,0,0.20)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(103,232,249,0.38)] hover:text-white"
       >
         <Bell className="size-4" />
         {unreadCount > 0 ? (
@@ -345,7 +345,7 @@ function NotificationMenu({
       </button>
 
       {open ? (
-        <div className="absolute right-0 top-full mt-2 w-[min(20rem,calc(100vw-1.5rem))] overflow-hidden rounded-xl border border-bullfy-neon-blue/20 bg-bullfy-panel/95 text-white shadow-glass-blue backdrop-blur-xl">
+        <div className="absolute right-0 top-full mt-2 w-[min(20rem,calc(100vw-1.5rem))] overflow-hidden border border-bullfy-neon-blue/20 bg-bullfy-panel/95 text-white shadow-glass-blue backdrop-blur-xl">
           <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
             <p className="text-sm font-black uppercase tracking-[0.12em]">
               Notificaciones
@@ -429,23 +429,23 @@ function ProfileMenu({
         onClick={() => setOpen(!open)}
         size="sm"
         variant="ghost"
-        className="relative flex size-10 items-center justify-center rounded-lg border border-white/10 bg-black/20 text-slate-300 transition hover:border-cyan-300/30 hover:text-white"
+        className="polygon-shape relative flex size-10 items-center justify-center text-slate-300 transition [--polygon-bg:rgba(0,0,0,0.20)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(103,232,249,0.38)] hover:text-white"
       >
         <UserIcon className="h-4 w-4" />
       </Button>
       {open ? (
-        <div className="absolute right-0 top-full mt-2 w-[min(18rem,calc(100vw-1.5rem))] overflow-hidden rounded-xl border border-bullfy-neon-blue/20 bg-bullfy-panel/95 text-white shadow-glass-blue backdrop-blur-xl">
+        <div className="absolute right-0 top-full mt-2 w-[min(18rem,calc(100vw-1.5rem))] overflow-hidden border border-bullfy-neon-blue/20 bg-bullfy-panel/95 text-white shadow-glass-blue backdrop-blur-xl">
           {user ? (
             <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3">
-            <div className="flex size-10 items-center justify-center rounded-full border border-bullfy-neon-blue/40 bg-bullfy-neon-blue/15 text-sm font-black text-bullfy-neon-blue">
-              {initials}
-            </div>
-            <div className="min-w-0">
-              <p className="truncate text-sm font-bold">{user.name}</p>
-              <p className="truncate text-[10px] text-slate-400">
-                {user.email}
-              </p>
-            </div>
+              <div className="flex size-10 items-center justify-center rounded-full border border-bullfy-neon-blue/40 bg-bullfy-neon-blue/15 text-sm font-black text-bullfy-neon-blue">
+                {initials}
+              </div>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-bold">{user.name}</p>
+                <p className="truncate text-[10px] text-slate-400">
+                  {user.email}
+                </p>
+              </div>
             </div>
           ) : (
             <div className="border-b border-white/10 px-4 py-4">
@@ -468,33 +468,33 @@ function ProfileMenu({
 
           {user ? (
             <div className="grid gap-1 border-b border-white/10 px-3 py-3 text-xs">
-            <ProfileStat
-              icon={Trophy}
-              label="Bullfy Points"
-              value={`${formatCompact(user.bullfyPoints)} BP`}
-              tone="green"
-            />
-            <ProfileStat
-              icon={Sparkles}
-              label="BMoney"
-              value={`${formatCompact(user.bmoneyBalance)} BM$`}
-              tone="green"
-            />
-            <ProfileStat
-              icon={Wallet}
-              label="Wallet Real"
-              value={`$${formatCompact(user.walletBalanceUsd)}`}
-              tone="blue"
-            />
-            <button
-              type="button"
-              className="mt-1 flex items-center justify-between gap-2 border-t border-white/10 pt-2 text-left text-[11px] text-slate-400 transition hover:text-bullfy-neon-blue"
-            >
-              <span>Referido</span>
-              <span className="flex items-center gap-1 font-mono font-bold text-white">
-                {user.referralCode} <Copy className="size-3" />
-              </span>
-            </button>
+              <ProfileStat
+                icon={Trophy}
+                label="Bullfy Points"
+                value={`${formatCompact(user.bullfyPoints)} BP`}
+                tone="green"
+              />
+              <ProfileStat
+                icon={Sparkles}
+                label="BMoney"
+                value={`${formatCompact(user.bmoneyBalance)} BM$`}
+                tone="green"
+              />
+              <ProfileStat
+                icon={Wallet}
+                label="Wallet Real"
+                value={`$${formatCompact(user.walletBalanceUsd)}`}
+                tone="blue"
+              />
+              <button
+                type="button"
+                className="mt-1 flex items-center justify-between gap-2 border-t border-white/10 pt-2 text-left text-[11px] text-slate-400 transition hover:text-bullfy-neon-blue"
+              >
+                <span>Referido</span>
+                <span className="flex items-center gap-1 font-mono font-bold text-white">
+                  {user.referralCode} <Copy className="size-3" />
+                </span>
+              </button>
             </div>
           ) : null}
 
@@ -507,7 +507,7 @@ function ProfileMenu({
                   key={item.label}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
+                  className="polygon-shape flex items-center gap-2 px-3 py-2 text-sm text-slate-300 transition [--polygon-bg:transparent] [--polygon-hover-bg:rgba(255,255,255,0.06)] hover:text-white"
                 >
                   <Icon className="size-4 text-cyan-200" />
                   {item.label}
@@ -518,7 +518,7 @@ function ProfileMenu({
               type="button"
               onClick={handleLogout}
               disabled={!user}
-              className="mt-1 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-bullfy-neon-red transition hover:bg-bullfy-neon-red/10"
+              className="polygon-shape mt-1 flex w-full items-center gap-2 px-3 py-2 text-sm text-bullfy-neon-red transition [--polygon-bg:transparent] [--polygon-hover-bg:rgba(255,59,92,0.10)]"
             >
               <LogOut className="size-4" />
               Cerrar sesion
@@ -579,7 +579,7 @@ function HeaderBalance({
 
   return (
     <div
-      className={`flex h-10 min-w-32 items-center justify-between gap-3 rounded-lg border px-3 transition hover:bg-white/5 ${toneClass}`}
+      className={`polygon-shape flex h-10 min-w-32 items-center justify-between gap-3 px-3 transition [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-bg:rgba(255,255,255,0.05)] ${toneClass}`}
     >
       <span className="text-[10px] font-black uppercase tracking-[0.12em]">
         {label}

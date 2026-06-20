@@ -326,7 +326,7 @@ function PrizePoolPanel({
         active && "border-[rgb(var(--card-accent-rgb)/0.45)]",
       )}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgb(var(--card-accent-rgb)/0.22),transparent_34%)] opacity-70" />
+      <div className="absolute inset-x-0 top-0 h-px bg-[var(--card-accent)] opacity-70" />
       <Trophy className="absolute -right-2 top-2 size-16 text-white/[0.035]" />
 
       <div className="relative z-10 flex items-start justify-between gap-3">

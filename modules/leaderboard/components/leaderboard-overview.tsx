@@ -41,11 +41,11 @@ export function LeaderboardOverview({
       <AppHeader active="rankings" user={sessionUser} />
 
       <section className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8">
-        <header className="relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0a1129]/30 p-8 shadow-2xl backdrop-blur-sm md:p-10">
+        <header className="relative overflow-hidden border border-white/5 bg-[#0a1129]/30 p-8 shadow-2xl backdrop-blur-sm md:p-10">
           <div className="t-scanlines z-10" />
           <div className="relative z-20 flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#B6FF3D]/30 bg-[#B6FF3D]/10 px-5 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#B6FF3D]">
+              <div className="mb-8 inline-flex items-center gap-3 border border-[#B6FF3D]/30 bg-[#B6FF3D]/10 px-5 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#B6FF3D]">
                 <IoMdPodium className="size-4"   />
                 Ranking global
               </div>
@@ -63,7 +63,7 @@ export function LeaderboardOverview({
             </div>
 
             {leader ? (
-              <div className="rounded-3xl border border-[#B6FF3D]/30 bg-[#B6FF3D]/10 p-5 shadow-[0_0_35px_rgba(182,255,61,0.12)]">
+              <div className="rounded-none border border-[#B6FF3D]/30 bg-[#B6FF3D]/10 p-5 shadow-[0_0_35px_rgba(182,255,61,0.12)]">
                 <p className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#B6FF3D]">
                   <Trophy className="size-4" />
                   Lider actual
@@ -154,7 +154,7 @@ function RankingStat({
   }[tone];
 
   return (
-    <div className="rounded-3xl border border-white/5 bg-[#0a1129]/75 p-5 backdrop-blur-sm">
+    <div className="rounded-none border border-white/5 bg-[#0a1129]/75 p-5 backdrop-blur-sm">
       <p
         className="text-[10px] font-black uppercase tracking-[0.2em]"
         style={{ color }}

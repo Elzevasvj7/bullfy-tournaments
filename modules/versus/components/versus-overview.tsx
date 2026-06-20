@@ -175,7 +175,7 @@ export function VersusOverview({
         transition={{ duration: 0.35 }}
       >
         <motion.header
-          className="relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0a1129]/35 p-8 shadow-2xl backdrop-blur-sm md:p-10"
+          className="relative overflow-hidden border border-white/5 bg-[#0a1129]/35 p-8 shadow-2xl backdrop-blur-sm md:p-10"
           initial={reduceMotion ? false : { y: 18, scale: 0.99 }}
           animate={reduceMotion ? undefined : { y: 0, scale: 1 }}
           transition={{ duration: 0.46, ease: [0.2, 0.9, 0.2, 1] }}
@@ -187,7 +187,7 @@ export function VersusOverview({
           />
           <div className="relative z-20 grid gap-7 lg:grid-cols-[1fr_25rem] lg:items-end">
             <div>
-              <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#FF2EC4]/30 bg-[#FF2EC4]/10 px-5 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#FF2EC4]">
+              <div className="mb-8 inline-flex items-center gap-3 border border-[#FF2EC4]/30 bg-[#FF2EC4]/10 px-5 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#FF2EC4]">
                 <SwordsIcon className="size-5" />1 vs 1 arena
               </div>
               <h1 className="t-display text-4xl font-black leading-[0.95] md:text-6xl">
@@ -440,7 +440,7 @@ function SuggestedOpponents({ traders }: { traders: VersusTrader[] }) {
           {traders.map((trader) => (
             <motion.div
               key={trader.id}
-              className="flex items-center justify-between rounded-2xl border border-white/5 bg-black/20 p-3"
+              className="flex items-center justify-between rounded-none border border-white/5 bg-black/20 p-3"
               whileHover={{ x: 4, borderColor: "rgba(0,229,255,0.28)" }}
               transition={{ duration: 0.18 }}
             >
@@ -507,7 +507,7 @@ function VersusCard({
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             <span
-              className="rounded-lg border px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.16em]"
+              className="rounded-none border px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.16em]"
               style={{
                 background: `${accent}1a`,
                 borderColor: `${accent}33`,
@@ -530,7 +530,7 @@ function VersusCard({
               score={challenge.challengerScore}
             />
             <div className="flex justify-center">
-              <div className="flex size-16 items-center justify-center rounded-2xl border border-[#00E5FF]/15 bg-black/25 transition group-hover/versus-card:border-[#B6FF3D]/35">
+              <div className="flex size-16 items-center justify-center rounded-none border border-[#00E5FF]/15 bg-black/25 transition group-hover/versus-card:border-[#B6FF3D]/35">
                 <SwordsIcon className="size-10" />
               </div>
             </div>
@@ -543,7 +543,7 @@ function VersusCard({
           </div>
 
           {challenge.message ? (
-            <p className="mt-4 rounded-2xl border border-white/5 bg-black/20 p-3 text-sm italic text-gray-400">
+            <p className="mt-4 rounded-none border border-white/5 bg-black/20 p-3 text-sm italic text-gray-400">
               &quot;{challenge.message}&quot;
             </p>
           ) : null}
@@ -565,7 +565,7 @@ function VersusCard({
             value={`${challenge.durationMinutes / 60}h`}
           />
           {challenge.inviteToken && challenge.status === "pending" ? (
-            <button className="flex items-center justify-center gap-2 rounded-xl border border-[#00E5FF]/25 bg-[#00E5FF]/10 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#00E5FF]">
+            <button className="flex items-center justify-center gap-2 rounded-none border border-[#00E5FF]/25 bg-[#00E5FF]/10 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#00E5FF]">
               <Copy className="size-3.5" />
               Copiar invite
             </button>
@@ -573,7 +573,7 @@ function VersusCard({
           {challenge.tournamentSlug ? (
             <Link
               href={`/tournaments/${challenge.tournamentSlug}`}
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-center text-xs font-black uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-[#060B1F]"
+              className="rounded-none border border-white/10 bg-white/5 px-3 py-2 text-center text-xs font-black uppercase tracking-[0.12em] text-white transition hover:bg-white hover:text-[#060B1F]"
             >
               Ver torneo
             </Link>
@@ -596,7 +596,7 @@ function VersusCard({
             </Button>
           ) : null}
           {isDone && winnerName ? (
-            <div className="rounded-xl border border-[#B6FF3D]/20 bg-[#B6FF3D]/10 p-3 text-xs text-gray-300">
+            <div className="rounded-none border border-[#B6FF3D]/20 bg-[#B6FF3D]/10 p-3 text-xs text-gray-300">
               Ganador:{" "}
               <span className="font-black text-[#B6FF3D]">{winnerName}</span>
             </div>
@@ -642,7 +642,7 @@ function TraderBlock({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-white/5 bg-black/20 p-4",
+        "rounded-none border border-white/5 bg-black/20 p-4",
         alignRight && "text-right",
       )}
     >
@@ -694,7 +694,7 @@ function VersusMetric({
   value: string;
 }) {
   return (
-    <div className="rounded-xl border border-white/5 bg-black/20 p-3">
+    <div className="rounded-none border border-white/5 bg-black/20 p-3">
       <p className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-gray-500">
         <Icon className="size-4" />
         {label}
@@ -718,7 +718,7 @@ function TabButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-xl border px-4 py-2.5 text-xs font-black uppercase tracking-[0.14em] transition",
+        "rounded-none border px-4 py-2.5 text-xs font-black uppercase tracking-[0.14em] transition",
         active
           ? "border-[#00E5FF]/50 bg-[#00E5FF]/15 text-white"
           : "border-white/10 bg-black/20 text-gray-400 hover:text-white",
@@ -749,7 +749,7 @@ function VersusStat({
 
   return (
     <motion.div
-      className="rounded-2xl border border-white/5 bg-black/20 p-4 text-center"
+      className="rounded-none border border-white/5 bg-black/20 p-4 text-center"
       initial={reduceMotion ? false : { opacity: 0, y: 12 }}
       animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       whileHover={

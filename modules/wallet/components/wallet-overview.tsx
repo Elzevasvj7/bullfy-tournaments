@@ -63,7 +63,7 @@ export function WalletUsdPage({
         />
       ) : null}
       <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)]">
-        <section className="relative overflow-hidden border border-bullfy-neon-blue/30 rounded-lg bg-[#071022]/88 p-5 shadow-[0_26px_80px_rgba(0,0,0,0.45)] backdrop-blur-md sm:p-7">
+        <section className="relative overflow-hidden border border-bullfy-neon-blue/24 bg-[#071022]/88 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.42)] backdrop-blur-md sm:p-7">
           <div className="absolute inset-x-0 top-0 h-1 bg-cyan-300" />
           <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0">
@@ -80,9 +80,6 @@ export function WalletUsdPage({
                 Balance usado para torneos Elite, premios en USD y retiros
                 cuando el modulo de payout este activo.
               </p>
-              {/* <div>
-                <a className="btn animated-button victoria-one" href="https://victoria.one/bullfy">HOLA</a>
-              </div> */}
             </div>
 
             <div className="grid min-w-0 gap-3 sm:grid-cols-3 lg:w-[32rem]">
@@ -134,7 +131,7 @@ export function WalletBmoneyPage({
       sessionUser={sessionUser}
       title="BMoney"
     >
-      <section className="relative border border-bullfy-neon-green/30 overflow-hidden rounded-lg bg-[#071022]/88 p-5 shadow-[0_26px_80px_rgba(0,0,0,0.45)] backdrop-blur-md sm:p-7">
+      <section className="relative overflow-hidden border border-bullfy-neon-green/24 bg-[#071022]/88 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.42)] backdrop-blur-md sm:p-7">
         <div className="absolute inset-x-0 top-0 h-1 bg-lime-300" />
         <div className="relative z-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
           <div>
@@ -199,8 +196,8 @@ export function WalletShell({
       <section className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="inline-flex bg-[#ff2ec4]/12 px-4 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-[#ff2ec4]">
-              {eyebrow}
+            <p className="polygon-shape inline-flex px-4 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-[#ff2ec4] [--polygon-bg:rgba(255,46,196,0.12)] [--polygon-border:rgba(255,46,196,0.28)]">
+              <span>{eyebrow}</span>
             </p>
             <h1 className="t-display mt-4 text-5xl font-black uppercase leading-[0.9] tracking-normal md:text-7xl">
               <span className="t-glitch" data-text={title}>
@@ -255,12 +252,12 @@ function WalletSectionNav({ active }: { active: WalletShellProps["active"] }) {
   ] as const;
 
   return (
-    <nav className="polygon-shape grid grid-cols-3 gap-1.5 px-2 py-2 [--polygon-bg:#0a1129b8]">
+    <nav className="polygon-shape grid grid-cols-3 gap-1.5 px-2 py-2 [--polygon-bg:#0a1129b8] [--polygon-border:rgba(255,255,255,0.08)]">
       {items.map((item) => (
         <Link
           key={item.key}
           className={cn(
-            "polygon-shape px-5 py-3 text-center text-xs font-black uppercase tracking-[0.14em] transition [--polygon-bg:transparent] hover:[--polygon-bg:#ffffff14]",
+            "polygon-shape px-5 py-3 text-center text-xs font-black uppercase tracking-[0.14em] transition [--polygon-bg:transparent] [--polygon-border:transparent] [--polygon-hover-bg:#ffffff14]",
             active === item.key
               ? "text-[#060B1F] [--polygon-bg:#00E5FF] hover:text-white"
               : "text-slate-400 hover:text-white",
@@ -294,7 +291,7 @@ function MetricCell({
   }[tone];
 
   return (
-    <div className={`rounded-md p-3 ${toneClass}`}>
+    <div className={`border border-white/8 p-3 ${toneClass}`}>
       <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
         {label}
       </p>
@@ -313,7 +310,7 @@ function BmoneySource({
   value: string;
 }) {
   return (
-    <div className="rounded-md bg-black/24 p-4 transition hover:bg-lime-300/8">
+    <div className="border border-white/8 bg-black/24 p-4 transition hover:border-lime-300/20 hover:bg-lime-300/8">
       <Icon className="size-4 text-lime-200" />
       <p className="mt-4 text-xs font-black uppercase tracking-[0.16em] text-slate-500">
         {label}
@@ -334,7 +331,7 @@ function PaymentReturnBanner({
 
   return (
     <section
-      className={`rounded-lg p-4 ${
+      className={`border border-white/10 p-4 ${
         isSuccess ? "bg-cyan-300/10" : "bg-amber-300/10"
       }`}
     >
@@ -374,7 +371,7 @@ export function WalletMovementPanel({
   active: WalletShellProps["active"];
 }) {
   return (
-    <section className="relative overflow-hidden rounded-lg">
+    <section className="relative overflow-hidden">
       <Card>
         <CardContent>
           <div className="flex items-center justify-between gap-3 px-4 py-3">

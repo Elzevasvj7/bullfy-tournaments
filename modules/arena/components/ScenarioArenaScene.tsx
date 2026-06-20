@@ -308,13 +308,19 @@ export function ScenarioArenaScene({
 
   return (
     <div ref={containerRef} className="scenario-viewer-scene relative" aria-label="Scenario GLB viewer">
-      {/* {showControls ? (
-        <div className="fixed" aria-label="Controles de camara">
-          <Button variant={"ghost"} type="button" aria-pressed={cameraMode === "podium"} onClick={toggleCameraMode}>
+      {showControls ? (
+        <div className="absolute right-4 top-4 z-20" aria-label="Controles de camara">
+          <Button
+            className="polygon-shape h-9 px-4 text-[10px] font-black uppercase tracking-[0.14em] text-cyan-100 [--polygon-bg:rgba(0,0,0,0.45)] [--polygon-border:rgba(103,232,249,0.24)] [--polygon-hover-border:rgba(182,255,61,0.42)]"
+            variant="ghost"
+            type="button"
+            aria-pressed={cameraMode === "podium"}
+            onClick={toggleCameraMode}
+          >
             {cameraMode === "panorama" ? "Ver podio" : "Panoramica"}
           </Button>
         </div>
-      ) : null} */}
+      ) : null}
       {(!ready || error) && (
         <div className="scenario-viewer-loader">
           <span>{error ?? (loading > 0 ? `Cargando Scenario.glb ${loading}%` : "Cargando Scenario.glb")}</span>

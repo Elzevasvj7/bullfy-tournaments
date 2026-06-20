@@ -128,7 +128,7 @@ export function ProfileDashboardView({
           <div className="grid gap-5 lg:grid-cols-[1fr_22rem]">
             <Card>
               <div className="grid gap-5 md:grid-cols-[auto_1fr_auto] md:items-center">
-                <div className="relative flex size-24 items-center justify-center rounded-lg border border-bullfy-neon-blue/30 bg-bullfy-neon-blue/10 text-3xl font-black text-bullfy-neon-blue shadow-neon-blue">
+                <div className="polygon-shape relative flex size-24 items-center justify-center text-3xl font-black text-bullfy-neon-blue [--polygon-bg:rgba(0,229,255,0.10)] [--polygon-border:rgba(0,229,255,0.34)]">
                   {initials}
                   {trader.verified ? (
                     <span className="absolute -right-2 -top-2 flex size-7 items-center justify-center rounded-full border border-bullfy-neon-green/50 bg-[#071102] text-bullfy-neon-green">
@@ -258,7 +258,7 @@ export function ProfileDashboardView({
               <div className="grid gap-4 md:grid-cols-[0.8fr_1.2fr]">
                 <div
                   className={cn(
-                    "relative overflow-hidden rounded-lg border p-4",
+                    "relative overflow-hidden border p-4",
                     globalRank.cardClass,
                   )}
                 >
@@ -358,9 +358,9 @@ export function ProfileDashboardView({
             >
               {clan ? (
                 <div className="grid gap-4">
-                  <div className="flex items-center justify-between gap-4 rounded-lg border border-white/10 bg-black/25 p-4">
+                  <div className="flex items-center justify-between gap-4 border border-white/10 bg-black/25 p-4">
                     <div className="flex min-w-0 items-center gap-3">
-                      <div className="flex size-12 items-center justify-center rounded-lg border border-bullfy-neon-green/30 bg-bullfy-neon-green/10 text-sm font-black text-bullfy-neon-green">
+                      <div className="polygon-shape flex size-12 items-center justify-center text-sm font-black text-bullfy-neon-green [--polygon-bg:rgba(182,255,61,0.10)] [--polygon-border:rgba(182,255,61,0.30)]">
                         {clan.tag}
                       </div>
                       <div className="min-w-0">
@@ -403,7 +403,7 @@ export function ProfileDashboardView({
                 {dashboard.mt5Accounts.map((account) => (
                   <div
                     key={account.id}
-                    className="grid gap-3 rounded-lg border border-white/10 bg-black/25 p-4 sm:grid-cols-[1fr_auto] sm:items-center"
+                    className="grid gap-3 border border-white/10 bg-black/25 p-4 sm:grid-cols-[1fr_auto] sm:items-center"
                   >
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
@@ -440,7 +440,7 @@ export function ProfileDashboardView({
             >
               {dashboard.tournaments.length > 0 ? (
                 <div className="grid gap-4">
-                  <div className="rounded-lg border border-bullfy-neon-blue/25 bg-bullfy-neon-blue/8 p-4">
+                  <div className="border border-bullfy-neon-blue/25 bg-bullfy-neon-blue/8 p-4">
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
@@ -555,7 +555,7 @@ export function ProfileDashboardView({
                 {dashboard.recentTrades.map((trade) => (
                   <div
                     key={trade.id}
-                    className="rounded-lg border border-white/10 bg-black/25 p-4"
+                    className="border border-white/10 bg-black/25 p-4"
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div>
@@ -637,7 +637,7 @@ function ProfileBackground() {
         <source src="/videos/tournament-bg.webm" type="video/webm" />
         <source src="/videos/tournament-bg.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,9,18,0.72),rgba(4,9,18,0.92)_32%,rgba(4,9,18,0.98)),radial-gradient(circle_at_16%_12%,rgba(0,229,255,0.18),transparent_28%),radial-gradient(circle_at_82%_16%,rgba(182,255,61,0.10),transparent_26%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,9,18,0.72),rgba(4,9,18,0.92)_32%,rgba(4,9,18,0.98))]" />
     </div>
   );
 }
@@ -654,7 +654,7 @@ function getRankPresentation(rank: number): RankPresentation {
     return {
       badgeClass: "border-amber-200/40 bg-amber-200/15 text-amber-100",
       cardClass:
-        "border-amber-300/35 bg-[radial-gradient(circle_at_22%_0%,rgba(251,191,36,0.24),transparent_34%),linear-gradient(135deg,rgba(251,191,36,0.16),rgba(7,19,29,0.9))]",
+        "border-amber-300/35 bg-[linear-gradient(135deg,rgba(251,191,36,0.16),rgba(7,19,29,0.9))]",
       label: "Lider",
       labelClass: "text-amber-200",
     };
@@ -664,7 +664,7 @@ function getRankPresentation(rank: number): RankPresentation {
     return {
       badgeClass: "border-cyan-100/35 bg-cyan-100/10 text-cyan-100",
       cardClass:
-        "border-cyan-200/30 bg-[radial-gradient(circle_at_22%_0%,rgba(125,211,252,0.18),transparent_34%),linear-gradient(135deg,rgba(148,163,184,0.14),rgba(7,19,29,0.9))]",
+        "border-cyan-200/30 bg-[linear-gradient(135deg,rgba(148,163,184,0.14),rgba(7,19,29,0.9))]",
       label: "Top 2",
       labelClass: "text-cyan-100",
     };
@@ -674,7 +674,7 @@ function getRankPresentation(rank: number): RankPresentation {
     return {
       badgeClass: "border-orange-300/35 bg-orange-300/10 text-orange-100",
       cardClass:
-        "border-orange-300/28 bg-[radial-gradient(circle_at_22%_0%,rgba(251,146,60,0.18),transparent_34%),linear-gradient(135deg,rgba(251,146,60,0.12),rgba(7,19,29,0.9))]",
+        "border-orange-300/28 bg-[linear-gradient(135deg,rgba(251,146,60,0.12),rgba(7,19,29,0.9))]",
       label: "Podio",
       labelClass: "text-orange-100",
     };
@@ -685,7 +685,7 @@ function getRankPresentation(rank: number): RankPresentation {
       badgeClass:
         "border-bullfy-neon-green/35 bg-bullfy-neon-green/10 text-bullfy-neon-green",
       cardClass:
-        "border-bullfy-neon-green/24 bg-[radial-gradient(circle_at_22%_0%,rgba(182,255,61,0.15),transparent_34%),linear-gradient(135deg,rgba(182,255,61,0.08),rgba(7,19,29,0.9))]",
+        "border-bullfy-neon-green/24 bg-[linear-gradient(135deg,rgba(182,255,61,0.08),rgba(7,19,29,0.9))]",
       label: "Top 10",
       labelClass: "text-bullfy-neon-green",
     };
@@ -695,7 +695,7 @@ function getRankPresentation(rank: number): RankPresentation {
     badgeClass:
       "border-bullfy-neon-blue/35 bg-bullfy-neon-blue/10 text-bullfy-neon-blue",
     cardClass:
-      "border-bullfy-neon-blue/20 bg-[radial-gradient(circle_at_22%_0%,rgba(0,229,255,0.15),transparent_34%),linear-gradient(135deg,rgba(0,229,255,0.08),rgba(7,19,29,0.9))]",
+      "border-bullfy-neon-blue/20 bg-[linear-gradient(135deg,rgba(0,229,255,0.08),rgba(7,19,29,0.9))]",
     label: "Ranqueando",
     labelClass: "text-bullfy-neon-blue",
   };
@@ -736,7 +736,7 @@ function AvatarIdentityCard({
   const hasAvatar = Boolean(trader.avatar3dUrl);
 
   return (
-    <section className="relative overflow-hidden rounded-lg border border-bullfy-neon-blue/20 bg-[radial-gradient(circle_at_50%_0%,rgba(0,229,255,0.18),transparent_38%),linear-gradient(180deg,rgba(7,19,29,0.96),rgba(3,9,17,0.98))] p-5 shadow-glass-blue backdrop-blur-xl">
+    <section className="relative overflow-hidden border border-bullfy-neon-blue/20 bg-[linear-gradient(180deg,rgba(7,19,29,0.96),rgba(3,9,17,0.98))] p-5 shadow-glass-blue backdrop-blur-xl">
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-bullfy-neon-blue/60" />
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -764,7 +764,7 @@ function AvatarIdentityCard({
       </div>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-[10rem_1fr] sm:items-center">
-        <div className="relative mx-auto flex aspect-[3/4] w-36 items-center justify-center overflow-hidden rounded-lg border border-bullfy-neon-blue/30 bg-black/35 shadow-[0_0_46px_rgba(0,229,255,0.14)]">
+        <div className="relative mx-auto flex aspect-[3/4] w-36 items-center justify-center overflow-hidden border border-bullfy-neon-blue/30 bg-black/35 shadow-[0_0_30px_rgba(0,229,255,0.10)]">
           <div className="absolute inset-x-4 top-5 h-16 rounded-full bg-bullfy-neon-blue/18 blur-2xl" />
           <div className="absolute bottom-0 h-24 w-24 rounded-t-full border border-bullfy-neon-blue/25 bg-bullfy-neon-blue/10" />
           <div className="relative z-10 flex size-20 items-center justify-center rounded-full border border-amber-200/45 bg-amber-200/10 text-2xl font-black text-amber-100">
@@ -844,7 +844,7 @@ function Panel({
         {href && actionLabel ? (
           <Link
             href={href}
-            className="rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-xs font-black text-slate-200 transition hover:border-bullfy-neon-blue/40 hover:text-bullfy-neon-blue"
+            className="polygon-shape px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-slate-200 transition [--polygon-bg:rgba(0,0,0,0.20)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(0,229,255,0.42)] hover:text-bullfy-neon-blue"
           >
             {actionLabel}
           </Link>
@@ -867,7 +867,7 @@ function StatTile({
   value: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-black/25 p-4">
+    <div className="border border-white/10 bg-black/25 p-4">
       <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
         {label}
       </p>
@@ -887,7 +887,7 @@ function StatTile({
 
 function MiniStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-black/25 p-3">
+    <div className="border border-white/10 bg-black/25 p-3">
       <p className="text-xs text-slate-500">{label}</p>
       <p className="mt-1 text-lg font-black text-white">{value}</p>
     </div>
@@ -906,7 +906,7 @@ function QuickAction({
   return (
     <Link
       href={href}
-      className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-black/25 px-4 py-3 text-sm font-black text-slate-200 transition hover:border-bullfy-neon-blue/40 hover:text-bullfy-neon-blue"
+      className="polygon-shape flex items-center justify-between gap-3 px-4 py-3 text-sm font-black text-slate-200 transition [--polygon-bg:rgba(0,0,0,0.25)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(0,229,255,0.42)] hover:text-bullfy-neon-blue"
     >
       <span className="flex items-center gap-2">
         <Icon className="size-4" />
@@ -933,9 +933,9 @@ function CompetitionRow({
   title: string;
 }) {
   return (
-    <div className="grid gap-3 rounded-lg border border-white/10 bg-black/25 p-3 transition hover:border-bullfy-neon-blue/35 sm:grid-cols-[1fr_auto_auto] sm:items-center">
+    <div className="grid gap-3 border border-white/10 bg-black/25 p-3 transition hover:border-bullfy-neon-blue/35 sm:grid-cols-[1fr_auto_auto] sm:items-center">
       <div className="flex min-w-0 items-center gap-3">
-        <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-300">
+        <div className="polygon-shape flex size-10 shrink-0 items-center justify-center text-slate-300 [--polygon-bg:rgba(255,255,255,0.05)] [--polygon-border:rgba(255,255,255,0.10)]">
           <Icon className="size-4" />
         </div>
         <div className="min-w-0">
@@ -968,7 +968,7 @@ function EmptyState({
   title: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-black/25 p-6 text-center">
+    <div className="border border-white/10 bg-black/25 p-6 text-center">
       <Icon className="mx-auto size-6 text-slate-500" />
       <p className="mt-3 font-black text-white">{title}</p>
       <p className="mt-2 text-sm leading-6 text-slate-500">{description}</p>

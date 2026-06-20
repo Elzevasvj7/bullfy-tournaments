@@ -109,17 +109,19 @@ export function TournamentDetailView({
 
         <section className="grid gap-7 lg:grid-cols-[minmax(0,1.35fr)_minmax(22rem,0.65fr)]">
           <div className="relative overflow-hidden border border-white/10 bg-[#071022]/82 p-7 shadow-[0_26px_80px_rgba(0,0,0,0.45)] sm:p-9">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(255,46,196,0.22),transparent_28%),radial-gradient(circle_at_80%_8%,rgba(0,229,255,0.18),transparent_34%)]" />
+            <div className="absolute inset-x-0 top-0 h-px bg-[#FF2EC4]/70" />
             <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(255,255,255,0.07)_0_1px,transparent_1px_26px)] opacity-20" />
             <div className="t-scanlines opacity-25" />
 
             <div className="relative z-10">
               <div className="mb-5 flex flex-wrap items-center gap-3">
-                <span className="bg-[#FF2EC4] px-4 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-[#070b18]">
-                  {tournament.entryCurrency === "USD" ? "Elite VIP" : "BMoney"}
+                <span className="polygon-shape px-4 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-[#070b18] [--polygon-bg:#FF2EC4]">
+                  <span>
+                    {tournament.entryCurrency === "USD" ? "Elite VIP" : "BMoney"}
+                  </span>
                 </span>
-                <span className="border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100">
-                  {tournament.status}
+                <span className="polygon-shape px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-cyan-100 [--polygon-bg:rgba(103,232,249,0.10)] [--polygon-border:rgba(103,232,249,0.30)]">
+                  <span>{tournament.status}</span>
                 </span>
               </div>
 
@@ -151,7 +153,7 @@ export function TournamentDetailView({
           </div>
 
           <aside className="relative overflow-hidden border border-white/10 bg-black/50 p-5">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_0%,rgba(0,229,255,0.18),transparent_38%)]" />
+            <div className="absolute inset-x-0 top-0 h-px bg-cyan-300/55" />
             <div className="relative z-10 flex h-full flex-col justify-between gap-5">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-200">
@@ -280,7 +282,7 @@ function ParticipantSelectArena({
       onMouseLeave={() => onActiveChange(null)}
     >
       <div className="relative min-h-[36rem] overflow-hidden px-0 pb-5 pt-6 sm:min-h-[38rem] lg:min-h-[40rem]">
-        <div className="pointer-events-none absolute left-1/2 top-0 h-[27rem] w-[min(34rem,88vw)] -translate-x-1/2 opacity-90 sm:h-[30rem] lg:h-[32rem]">
+        {/* <div className="pointer-events-none absolute left-1/2 top-0 h-[27rem] w-[min(34rem,88vw)] -translate-x-1/2 opacity-90 sm:h-[30rem] lg:h-[32rem]">
           <Image
             alt={activeFighter.alias}
             className="object-cover object-top grayscale drop-shadow-[0_30px_80px_rgba(0,0,0,0.65)] transition duration-500"
@@ -291,7 +293,7 @@ function ParticipantSelectArena({
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_54%,rgba(5,8,19,0.86)_100%)]" />
 
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,transparent_0%,transparent_42%,rgba(5,8,19,0.72)_78%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,8,19,0.56),transparent_28%,transparent_72%,rgba(5,8,19,0.56))]" />
           <div className="relative pb-5 z-10 mx-auto flex max-w-4xl flex-col items-center pt-[20rem] text-center sm:pt-[20rem] lg:pt-[26rem]">
             <h3 className="t-display mt-3 text-xl font-black uppercase leading-[0.86] text-white drop-shadow-[0_8px_0_rgba(0,0,0,0.72)] sm:text-2xl lg:text-3xl">
               {activeFighter.alias}
@@ -300,9 +302,9 @@ function ParticipantSelectArena({
               {activeFighter.clan}
             </p>
           </div>
-        </div>
-        <div className="sm:mx-auto sm:max-w-5xl pt-[25rem] sm:pt-[30rem] lg:pt-[32rem]">
-          <div className="grid grid-cols-3 gap-1 sm:grid-cols-6">
+        </div> */}
+        <div className="">
+          <div className="grid grid-cols-3 gap-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {fighters.map((fighter) => (
               <ParticipantTile
                 active={activeFighter.id === fighter.id}
@@ -382,7 +384,7 @@ function TournamentDetailBackground() {
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_18%_8%,rgba(255,46,196,0.18),transparent_30%),radial-gradient(circle_at_86%_12%,rgba(0,229,255,0.18),transparent_30%),linear-gradient(180deg,rgba(6,11,31,0.04),rgba(6,11,31,0.7))]"
+        className="pointer-events-none fixed inset-0 z-0 bg-[linear-gradient(180deg,rgba(6,11,31,0.04),rgba(6,11,31,0.72))]"
       />
     </>
   );

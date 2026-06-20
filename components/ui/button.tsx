@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "text-[13px] font-black uppercase tracking-wider transition-all flex items-center gap-1.5 px-3 py-1.5 rounded-lg border cursor-pointer",
+  "relative isolate flex cursor-pointer items-center gap-1.5 rounded-none border px-3 py-1.5 text-[13px] font-black uppercase tracking-wider transition-all focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-55",
   {
     variants: {
       variant: {
@@ -19,29 +19,27 @@ const buttonVariants = cva(
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
         neonBlue:
-          "border-[color:var(--bullfy-neon-blue)] bg-[color-mix(in_srgb,var(--bullfy-neon-blue)_10%,transparent)] text-[var(--bullfy-neon-blue)] shadow-[0_0_22px_rgb(0_229_255_/_0.36)] hover:bg-[color-mix(in_srgb,var(--bullfy-neon-blue)_16%,transparent)] hover:shadow-[0_0_30px_rgb(0_229_255_/_0.48)] focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-blue)_42%,transparent)]",
+          "border-[color:color-mix(in_srgb,var(--bullfy-neon-blue)_55%,transparent)] bg-[color-mix(in_srgb,var(--bullfy-neon-blue)_8%,transparent)] text-[var(--bullfy-neon-blue)] hover:border-[var(--bullfy-neon-blue)] hover:bg-[color-mix(in_srgb,var(--bullfy-neon-blue)_13%,transparent)] focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-blue)_42%,transparent)]",
         neonGreen:
-          "text-bullfy-neon-green border-bullfy-neon-green/60 bg-bullfy-neon-green/5 shadow-[0_0_18px_rgba(182,255,61,0.45)] hover:shadow-[0_0_26px_rgba(182,255,61,0.75)] animate-pulse",
+          "text-bullfy-neon-green animate-pulse",
         neonRed:
-          "border bg-[color-mix(in_srgb,var(--bullfy-neon-red)_10%,transparent)] text-[var(--bullfy-neon-red)] shadow-[0_0_22px_rgb(255_59_92_/_0.34)] hover:bg-[color-mix(in_srgb,var(--bullfy-neon-red)_16%,transparent)] hover:shadow-[0_0_30px_rgb(255_59_92_/_0.48)] focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-red)_42%,transparent)]",
+          "border-[color:color-mix(in_srgb,var(--bullfy-neon-red)_55%,transparent)] bg-[color-mix(in_srgb,var(--bullfy-neon-red)_8%,transparent)] text-[var(--bullfy-neon-red)] hover:border-[var(--bullfy-neon-red)] hover:bg-[color-mix(in_srgb,var(--bullfy-neon-red)_13%,transparent)] focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-red)_42%,transparent)]",
         neonBlueSolid:
-          "border-[color:var(--bullfy-neon-blue)] bg-[var(--bullfy-neon-blue)] text-[#03111d] shadow-[0_0_22px_rgb(0_229_255_/_0.42)] hover:brightness-110 focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-blue)_42%,transparent)]",
+          "border-[color:var(--bullfy-neon-blue)] bg-[var(--bullfy-neon-blue)] text-[#03111d] [--animated-button-accent:var(--bullfy-neon-blue)] hover:brightness-105 focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-blue)_42%,transparent)]",
         neonGreenSolid:
-          "border-[color:var(--bullfy-neon-green)] bg-[var(--bullfy-neon-green)] text-[#071102] shadow-[0_0_22px_rgb(182_255_61_/_0.46)] hover:brightness-110 focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-green)_42%,transparent)]",
+          "accent-green border-[color:var(--bullfy-neon-green)] bg-[var(--bullfy-neon-green)] text-[#071102] hover:brightness-105 focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-green)_42%,transparent)]",
         neonRedSolid:
-          "border-[color:var(--bullfy-neon-red)] bg-[var(--bullfy-neon-red)] text-white shadow-[0_0_22px_rgb(255_59_92_/_0.42)] hover:brightness-110 focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-red)_42%,transparent)]",
+          "accent-red border-[color:var(--bullfy-neon-red)] bg-[var(--bullfy-neon-red)] text-white hover:brightness-105 focus-visible:ring-[color-mix(in_srgb,var(--bullfy-neon-red)_42%,transparent)]",
       },
       size: {
         default:
           "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        xs: "h-6 gap-1 px-2 text-xs has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 px-2.5 text-[0.8rem] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
         lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         icon: "size-8",
-        "icon-xs":
-          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm":
-          "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
+        "icon-xs": "size-6 [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm": "size-7",
         "icon-lg": "size-9",
       },
     },

@@ -151,7 +151,7 @@ export function ClanDetailView({
 
 function ClanStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/5 bg-black/20 p-4 text-center">
+    <div className="rounded-none border border-white/5 bg-black/20 p-4 text-center">
       <p className="t-display text-2xl font-black text-white">{value}</p>
       <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-gray-500">
         {label}
@@ -174,7 +174,7 @@ function TabButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "flex h-11 items-center gap-2 rounded-xl border px-4 text-xs font-black uppercase tracking-[0.14em] transition",
+        "flex h-11 items-center gap-2 rounded-none border px-4 text-xs font-black uppercase tracking-[0.14em] transition",
         active
           ? "border-[#00E5FF]/50 bg-[#00E5FF]/15 text-white shadow-[0_0_20px_rgba(0,229,255,0.16)]"
           : "border-white/10 bg-black/20 text-gray-400 hover:text-white",
@@ -272,7 +272,7 @@ function RoleBadge({ role }: { role: ClanMember["role"] }) {
   const icon = role === "owner" ? Crown : role === "officer" ? Shield : Users;
   const Icon = icon;
   return (
-    <span className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-black uppercase text-gray-300">
+    <span className="inline-flex items-center gap-1 rounded-none border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-black uppercase text-gray-300">
       <Icon className="size-3 text-[#B6FF3D]" />
       {role}
     </span>
@@ -315,7 +315,7 @@ function WarsPanel({
           const won = war.winnerClanId === currentClan.id;
 
           return (
-            <div key={war.id} className="rounded-2xl border border-white/5 bg-black/20 p-4">
+            <div key={war.id} className="rounded-none border border-white/5 bg-black/20 p-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500">
@@ -365,7 +365,7 @@ function SettingsPanel({
             <Label>Tag</Label>
             <Input defaultValue={clan.tag} className="mt-2 border-white/10 bg-black/25 text-white" />
           </div>
-          <div className="rounded-2xl border border-[#00E5FF]/20 bg-[#00E5FF]/10 p-4 text-sm text-gray-300">
+          <div className="rounded-none border border-[#00E5FF]/20 bg-[#00E5FF]/10 p-4 text-sm text-gray-300">
             Codigo de invitacion:{" "}
             <span className="t-mono font-black text-[#00E5FF]">{clan.inviteCode}</span>
           </div>

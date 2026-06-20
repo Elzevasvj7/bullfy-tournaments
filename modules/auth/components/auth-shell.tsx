@@ -86,7 +86,7 @@ function AuthSignal({
   value: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-black/25 p-3 backdrop-blur">
+    <div className="rounded-none border border-white/10 bg-black/25 p-3 backdrop-blur">
       <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.14em] text-slate-400">
         <Icon className="size-3.5 text-bullfy-neon-green" />
         {label}
@@ -110,7 +110,7 @@ function VideoBackground() {
         <source src="/videos/tournament-bg.webm" type="video/webm" />
         <source src="/videos/tournament-bg.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,229,255,0.20),transparent_30%),linear-gradient(90deg,rgba(4,8,22,0.96),rgba(4,8,22,0.70)_48%,rgba(4,8,22,0.95))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,8,22,0.96),rgba(4,8,22,0.70)_48%,rgba(4,8,22,0.95))]" />
       <Sparkles className="absolute bottom-8 left-8 hidden size-5 text-bullfy-neon-green/60 md:block" />
     </div>
   );

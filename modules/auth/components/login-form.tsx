@@ -63,7 +63,7 @@ export function LoginForm({ redirectTo = "/" }: LoginFormProps) {
   return (
     <>
       <CardHeader className="gap-3">
-        <div className="flex size-11 items-center justify-center rounded-lg border border-bullfy-neon-blue/25 bg-bullfy-neon-blue/10 text-bullfy-neon-blue">
+        <div className="flex size-11 items-center justify-center rounded-none border border-bullfy-neon-blue/25 bg-bullfy-neon-blue/10 text-bullfy-neon-blue">
           <LogIn className="size-5" />
         </div>
         <div>
@@ -120,7 +120,7 @@ export function LoginForm({ redirectTo = "/" }: LoginFormProps) {
           </div>
 
           {error ? (
-            <div className="flex gap-2 rounded-lg border border-bullfy-neon-red/30 bg-bullfy-neon-red/10 p-3 text-sm text-red-100">
+            <div className="flex gap-2 rounded-none border border-bullfy-neon-red/30 bg-bullfy-neon-red/10 p-3 text-sm text-red-100">
               <AlertCircle className="mt-0.5 size-4 shrink-0 text-bullfy-neon-red" />
               {error}
             </div>

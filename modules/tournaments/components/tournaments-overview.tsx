@@ -50,25 +50,24 @@ export function TournamentsOverview({
               </p>
             </div>
 
-            <div className="flex gap-4 relative w-full p-1.5 px-2 bg-[#0a1129]/60 rounded-lg sm:w-auto">
+            <div className="polygon-shape relative flex w-full gap-2 px-2 py-2 [--polygon-bg:rgba(10,17,41,0.72)] [--polygon-border:rgba(255,255,255,0.08)] sm:w-auto">
               <button
                 type="button"
                 onClick={() => setLeagueFilter("bmoney")}
-                className={`block px-4 py-3 rounded-lg cursor-pointer relative text-sm font-black uppercase tracking-widest transition-all before:content-[''] before:absolute before:h-full before:w-full before:opacity-[1] before:top-0 before:right-0 before:skew-x-145  sm:px-10 sm:py-4 sm:text-[22px] ${
+                className={`polygon-shape relative block cursor-pointer px-4 py-3 text-sm font-black uppercase tracking-widest transition-all [--polygon-border:transparent] [--polygon-hover-bg:rgba(255,255,255,0.08)] sm:px-10 sm:py-4 sm:text-[22px] ${
                   leagueFilter === "bmoney"
-                    ? " text-[#060B1F] bg-[#b6ff3d]"
+                    ? "text-[#060B1F] [--polygon-bg:#b6ff3d]"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
-                
                 <span className="relative">Lobby BMoney</span>
               </button>
               <button
                 type="button"
                 onClick={() => setLeagueFilter("elite")}
-                className={`block px-4 py-3 rounded-lg cursor-pointer text-sm font-black uppercase tracking-widest transition-all sm:px-10 sm:py-4 sm:text-[22px] ${
+                className={`polygon-shape block cursor-pointer px-4 py-3 text-sm font-black uppercase tracking-widest transition-all [--polygon-border:transparent] [--polygon-hover-bg:rgba(255,255,255,0.08)] sm:px-10 sm:py-4 sm:text-[22px] ${
                   leagueFilter === "elite"
-                    ? "bg-[#00E5FF] text-[#060B1F]"
+                    ? "text-[#060B1F] [--polygon-bg:#FF2EC4]"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
@@ -96,7 +95,7 @@ export function TournamentsOverview({
           )}
         </section>
 
-          <section className="relative z-10">
+          {/* <section className="relative z-10">
             <div className="mb-8 flex items-end justify-between px-2">
               <div>
                 <h2 className="t-display flex items-center gap-3 text-3xl font-black md:text-4xl">
@@ -111,7 +110,7 @@ export function TournamentsOverview({
             <div className="border border-dashed border-white/10 py-12 text-center text-sm text-gray-500">
               El historial se activara cuando conectemos participaciones reales.
             </div>
-          </section>
+          </section> */}
       </section>
     </main>
   );
@@ -158,7 +157,7 @@ function LobbyHero({ tournaments }: { tournaments: Tournament[] }) {
   );
 
   return (
-    <header className="relative z-10 overflow-hidden border border-white/5 bg-[#0a1129]/30 p-8 text-center shadow-2xl backdrop-blur-sm rounded-2xl md:p-16">
+    <header className="relative z-10 overflow-hidden border border-white/8 bg-[#0a1129]/38 p-8 text-center shadow-[0_28px_90px_rgba(0,0,0,0.42)] backdrop-blur-sm md:p-16">
       <div className="t-scanlines z-10" />
 
       <div className="relative z-20">

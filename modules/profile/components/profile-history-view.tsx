@@ -109,7 +109,7 @@ export function ProfileHistoryView({
 
         <section className="mx-auto w-full max-w-7xl px-4 pb-10 pt-5 sm:px-6 lg:px-8">
           <div className="grid gap-5 lg:grid-cols-[1fr_22rem] lg:items-stretch">
-            <section className="rounded-lg border border-white/10 bg-bullfy-panel/82 p-5 shadow-glass-blue backdrop-blur-xl">
+            <section className="rounded-none border border-white/10 bg-bullfy-panel/82 p-5 shadow-glass-blue backdrop-blur-xl">
               <Link
                 href="/profile"
                 className="inline-flex items-center gap-2 text-sm font-black text-slate-400 transition hover:text-bullfy-neon-blue"
@@ -143,7 +143,7 @@ export function ProfileHistoryView({
               </div>
             </section>
 
-            <section className="rounded-lg border border-white/10 bg-bullfy-panel/82 p-5 shadow-glass-blue backdrop-blur-xl">
+            <section className="rounded-none border border-white/10 bg-bullfy-panel/82 p-5 shadow-glass-blue backdrop-blur-xl">
               <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
                 Resumen del perfil
               </p>
@@ -156,9 +156,9 @@ export function ProfileHistoryView({
             </section>
           </div>
 
-          <section className="mt-5 rounded-lg border border-white/10 bg-bullfy-panel/82 p-4 shadow-glass-blue backdrop-blur-xl sm:p-5">
+          <section className="mt-5 rounded-none border border-white/10 bg-bullfy-panel/82 p-4 shadow-glass-blue backdrop-blur-xl sm:p-5">
             <Tabs defaultValue="tournaments" className="gap-5">
-              <TabsList className="h-auto w-full flex-wrap justify-start gap-2 rounded-lg border border-white/10 bg-black/25 p-1">
+              <TabsList className="h-auto w-full flex-wrap justify-start gap-2 rounded-none border border-white/10 bg-black/25 p-1">
                 <HistoryTab value="tournaments" icon={Trophy} label="Torneos" />
                 <HistoryTab value="versus" icon={Swords} label="Versus" />
                 <HistoryTab value="clan-wars" icon={Shield} label="Clan wars" />
@@ -212,7 +212,7 @@ function HistoryBackground() {
         <source src="/videos/tournament-bg.webm" type="video/webm" />
         <source src="/videos/tournament-bg.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,9,18,0.72),rgba(4,9,18,0.94)_34%,rgba(4,9,18,0.99)),radial-gradient(circle_at_18%_16%,rgba(0,229,255,0.18),transparent_28%),radial-gradient(circle_at_82%_12%,rgba(182,255,61,0.12),transparent_24%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,9,18,0.72),rgba(4,9,18,0.94)_34%,rgba(4,9,18,0.99))]" />
     </div>
   );
 }
@@ -229,7 +229,7 @@ function HistoryTab({
   return (
     <TabsTrigger
       value={value}
-      className="h-10 flex-none rounded-lg px-4 text-sm font-black text-slate-400 data-active:border-bullfy-neon-blue/40 data-active:bg-bullfy-neon-blue/10 data-active:text-bullfy-neon-blue"
+      className="h-10 flex-none rounded-none px-4 text-sm font-black text-slate-400 data-active:border-bullfy-neon-blue/40 data-active:bg-bullfy-neon-blue/10 data-active:text-bullfy-neon-blue"
     >
       <Icon className="size-4" />
       {label}
@@ -245,7 +245,7 @@ function TournamentHistoryCard({
   const positive = tournament.scorePercent >= 0;
 
   return (
-    <article className="grid gap-4 rounded-lg border border-white/10 bg-black/25 p-4 transition hover:border-bullfy-neon-blue/35 md:grid-cols-[1fr_auto_auto_auto] md:items-center">
+    <article className="grid gap-4 rounded-none border border-white/10 bg-black/25 p-4 transition hover:border-bullfy-neon-blue/35 md:grid-cols-[1fr_auto_auto_auto] md:items-center">
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="border-white/10 bg-white/5 text-slate-300">
@@ -273,7 +273,7 @@ function TournamentHistoryCard({
       <MetricPill icon={Crown} label="Prize pool" value={`$${compactFormatter.format(tournament.prizeUsd)}`} />
       <div
         className={cn(
-          "rounded-lg border px-4 py-3 text-right font-mono text-lg font-black",
+          "rounded-none border px-4 py-3 text-right font-mono text-lg font-black",
           positive
             ? "border-bullfy-neon-green/30 bg-bullfy-neon-green/10 text-bullfy-neon-green"
             : "border-bullfy-neon-red/30 bg-bullfy-neon-red/10 text-bullfy-neon-red",
@@ -290,7 +290,7 @@ function VersusHistoryCard({ versus }: { versus: ProfileVersusSnapshot }) {
   const positive = versus.result === "win" || versus.result === "draw";
 
   return (
-    <article className="grid gap-4 rounded-lg border border-white/10 bg-black/25 p-4 transition hover:border-bullfy-neon-green/35 md:grid-cols-[1fr_auto_auto] md:items-center">
+    <article className="grid gap-4 rounded-none border border-white/10 bg-black/25 p-4 transition hover:border-bullfy-neon-green/35 md:grid-cols-[1fr_auto_auto] md:items-center">
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="border-white/10 bg-white/5 text-slate-300">
@@ -318,7 +318,7 @@ function VersusHistoryCard({ versus }: { versus: ProfileVersusSnapshot }) {
         label="Stake"
         value={`$${moneyFormatter.format(versus.stakeUsd)}`}
       />
-      <div className="rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-right">
+      <div className="rounded-none border border-white/10 bg-black/30 px-4 py-3 text-right">
         <p className="font-mono text-lg font-black text-white">
           {versus.score} - {versus.opponentScore}
         </p>
@@ -340,7 +340,7 @@ function ClanWarHistoryCard({ war }: { war: ProfileClanWarSnapshot }) {
   const positive = war.result === "win" || war.result === "draw";
 
   return (
-    <article className="grid gap-4 rounded-lg border border-white/10 bg-black/25 p-4 transition hover:border-amber-300/35 md:grid-cols-[1fr_auto_auto] md:items-center">
+    <article className="grid gap-4 rounded-none border border-white/10 bg-black/25 p-4 transition hover:border-amber-300/35 md:grid-cols-[1fr_auto_auto] md:items-center">
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="border-white/10 bg-white/5 text-slate-300">
@@ -368,7 +368,7 @@ function ClanWarHistoryCard({ war }: { war: ProfileClanWarSnapshot }) {
         label="Impacto"
         value={`${war.rankImpact > 0 ? "+" : ""}${war.rankImpact} rank`}
       />
-      <div className="rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-right">
+      <div className="rounded-none border border-white/10 bg-black/30 px-4 py-3 text-right">
         <p className="font-mono text-lg font-black text-white">
           {war.clanScore} - {war.opponentScore}
         </p>
@@ -395,7 +395,7 @@ function MetricPill({
   value: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-black/30 px-4 py-3">
+    <div className="rounded-none border border-white/10 bg-black/30 px-4 py-3">
       <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500">
         <Icon className="size-3.5" />
         {label}
@@ -407,7 +407,7 @@ function MetricPill({
 
 function SummaryTile({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-black/25 p-3">
+    <div className="rounded-none border border-white/10 bg-black/25 p-3">
       <p className="text-xs text-slate-500">{label}</p>
       <p className="mt-1 text-xl font-black text-white">{value}</p>
     </div>

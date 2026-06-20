@@ -129,7 +129,7 @@ export function TournamentCardActions({
         {joined ? (
           <Link
             href={tournamentArenaHref}
-            className="relative flex h-10 items-center justify-center gap-2 overflow-hidden border border-cyan-200/70 bg-cyan-300 text-sm font-black uppercase tracking-[0.16em] text-black transition duration-300 hover:bg-cyan-100 group-hover/card:shadow-[0_0_28px_rgb(0_229_255_/_0.32)]"
+            className="animated-button h-10 gap-2 border-cyan-200/70 bg-cyan-300 px-4 text-sm text-black [--animated-button-accent:#00E5FF]"
           >
             <Swords className="size-4" />
             Abrir cockpit
@@ -147,7 +147,7 @@ export function TournamentCardActions({
               setAccepted(false);
               setModalOpen(true);
             }}
-            className="h-10 justify-center gap-2 rounded-none border border-cyan-200/70 bg-cyan-300 text-sm font-black uppercase tracking-[0.16em] text-black transition duration-300 hover:bg-cyan-100 group-hover/card:bg-[var(--card-accent)] group-hover/card:shadow-[0_0_30px_rgb(var(--card-accent-rgb)_/_0.34)]"
+            className="animated-button h-10 justify-center gap-2 border-cyan-200/70 bg-cyan-300 text-sm text-black [--animated-button-accent:var(--card-accent)]"
           >
             <UserPlus className="size-4" />
             Unirme al torneo
@@ -155,7 +155,7 @@ export function TournamentCardActions({
         )}
         <Link
           href={tournamentSecondaryHref}
-          className="flex h-9 items-center justify-center gap-2 border border-white/10 bg-black/30 text-xs font-black uppercase tracking-[0.16em] text-slate-300 transition duration-300 hover:border-cyan-300/45 hover:text-cyan-100 group-hover/card:border-[rgb(var(--card-accent-rgb)/0.28)]"
+          className="polygon-shape flex h-9 items-center justify-center gap-2 px-4 text-xs font-black uppercase tracking-[0.16em] text-slate-300 transition duration-300 [--polygon-bg:rgba(0,0,0,0.30)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgb(var(--card-accent-rgb)/0.45)] hover:text-cyan-100"
         >
           <Eye className="size-4" />
           {secondaryLabel}
@@ -163,7 +163,7 @@ export function TournamentCardActions({
       </div>
 
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="scrollbar-app p-4 max-h-[calc(100dvh-2rem)] max-w-md overflow-y-auto border-cyan-300/20 bg-[#07131d] text-white shadow-[0_30px_100px_rgba(0,0,0,0.55)] sm:max-w-md">
+        <DialogContent className="scrollbar-app max-h-[calc(100dvh-2rem)] max-w-md overflow-y-auto border-cyan-300/20 bg-[#07131d] p-4 text-white shadow-[0_30px_100px_rgba(0,0,0,0.55)] sm:max-w-md">
           <DialogHeader>
             <p className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
               Confirmar inscripcion
@@ -196,20 +196,20 @@ export function TournamentCardActions({
               </div>
 
               {!hasEnoughBalance ? (
-                <div className="flex gap-2 rounded-md border border-amber-300/25 bg-amber-300/10 p-3 text-xs leading-5 text-amber-100">
+                <div className="flex gap-2 border border-amber-300/25 bg-amber-300/10 p-3 text-xs leading-5 text-amber-100">
                   <AlertTriangle className="mt-0.5 size-4 shrink-0" />
                   Saldo insuficiente para inscribirte en esta demo. Puedes
-                  revisa los detalles del torneo antes de inscribirte.
+                  revisar los detalles del torneo antes de inscribirte.
                 </div>
               ) : null}
               {!sessionUser ? (
-                <div className="flex gap-2 rounded-md border border-cyan-300/25 bg-cyan-300/10 p-3 text-xs leading-5 text-cyan-100">
+                <div className="flex gap-2 border border-cyan-300/25 bg-cyan-300/10 p-3 text-xs leading-5 text-cyan-100">
                   <AlertTriangle className="mt-0.5 size-4 shrink-0" />
                   Inicia sesion para confirmar tu inscripcion como participante.
                 </div>
               ) : null}
 
-              <div className="rounded-md border border-white/10 bg-black/25 p-3">
+              <div className="border border-white/10 bg-black/25 p-3">
                 <p className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
                   <ShieldCheck className="size-3.5" />
                   Reglas clave
@@ -231,7 +231,7 @@ export function TournamentCardActions({
                 </div>
               </div>
 
-              <label className="flex gap-3 rounded-md border border-cyan-300/15 bg-cyan-300/5 p-3 text-xs leading-5 text-slate-300">
+              <label className="flex gap-3 border border-cyan-300/15 bg-cyan-300/5 p-3 text-xs leading-5 text-slate-300">
                 <input
                   type="checkbox"
                   checked={accepted}
@@ -248,7 +248,7 @@ export function TournamentCardActions({
             </div>
 
             {error ? (
-              <p className="mt-3 rounded-md border border-red-300/25 bg-red-400/10 p-2 text-xs text-red-100">
+              <p className="mt-3 border border-red-300/25 bg-red-400/10 p-2 text-xs text-red-100">
                 {error}
               </p>
             ) : null}
@@ -302,7 +302,7 @@ function JoinMetric({
         : "text-white";
 
   return (
-    <div className="rounded-md border border-white/10 bg-black/25 p-3">
+    <div className="border border-white/10 bg-black/25 p-3">
       <p className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
         <Icon className="size-3.5 text-cyan-200" />
         {label}

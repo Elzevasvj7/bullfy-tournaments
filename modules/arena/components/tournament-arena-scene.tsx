@@ -90,11 +90,11 @@ export function TournamentArenaScene({
           <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-cyan-100/70">
             Arena en vivo
           </p>
-          <span className="rounded-sm border bg-red-500 px-2 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-white">
-            Live
+          <span className="polygon-shape px-2 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-white [--polygon-bg:#EF4444] [--polygon-border:rgba(248,113,113,0.45)]">
+            <span>Live</span>
           </span>
-          <span className="border border-cyan-300/20 bg-black/35 px-2 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-cyan-100">
-            {participants.length}/20 contendientes
+          <span className="polygon-shape px-2 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-cyan-100 [--polygon-bg:rgba(0,0,0,0.35)] [--polygon-border:rgba(103,232,249,0.20)]">
+            <span>{participants.length}/20 contendientes</span>
           </span>
         </div>
         <h2 className="mt-3 max-w-md truncate text-4xl font-black uppercase tracking-tight text-white">
@@ -280,7 +280,7 @@ function SceneControls({
   onZoomOut: () => void;
 }) {
   return (
-    <div className="absolute bottom-5 left-5 z-10 flex overflow-hidden border border-cyan-300/15 bg-black/40 backdrop-blur">
+    <div className="polygon-shape absolute bottom-5 left-5 z-10 flex overflow-hidden backdrop-blur [--polygon-bg:rgba(0,0,0,0.40)] [--polygon-border:rgba(103,232,249,0.15)]">
       <SceneControlButton label="Rotar izquierda" onClick={onRotateLeft}>
         <RotateCcw className="size-4" />
       </SceneControlButton>
@@ -317,7 +317,7 @@ function SceneControlButton({
       aria-label={label}
       title={label}
       onClick={onClick}
-      className="flex h-10 min-w-10 items-center justify-center border-r border-cyan-300/10 px-3 text-cyan-100 transition last:border-r-0 hover:bg-cyan-300/10"
+      className="flex h-10 min-w-10 items-center justify-center border-r border-cyan-300/10 px-3 text-cyan-100 transition last:border-r-0 hover:bg-cyan-300/10 hover:text-lime-100"
     >
       {children}
     </button>

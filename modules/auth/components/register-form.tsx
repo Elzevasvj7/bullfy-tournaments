@@ -149,7 +149,7 @@ export function RegisterForm() {
       <CardHeader className="gap-3">
         <div>
           <CardTitle className="text-2xl font-black uppercase text-white flex items-center gap-5">
-            <div className="flex size-11 items-center justify-center rounded-lg border border-bullfy-neon-green/25 bg-bullfy-neon-green/10 text-bullfy-neon-green">
+            <div className="flex size-11 items-center justify-center rounded-none border border-bullfy-neon-green/25 bg-bullfy-neon-green/10 text-bullfy-neon-green">
               <ShieldCheck className="size-5" />
             </div>
             Registro
@@ -262,7 +262,7 @@ export function RegisterForm() {
           />
 
           {error ? (
-            <div className="flex gap-2 rounded-lg border border-bullfy-neon-red/30 bg-bullfy-neon-red/10 p-3 text-sm text-red-100">
+            <div className="flex gap-2 rounded-none border border-bullfy-neon-red/30 bg-bullfy-neon-red/10 p-3 text-sm text-red-100">
               <AlertCircle className="mt-0.5 size-4 shrink-0 text-bullfy-neon-red" />
               {error}
             </div>
@@ -340,7 +340,7 @@ function OtpRow({
   onVerify: () => void;
 }) {
   return (
-    <div className="grid gap-2 rounded-lg border border-white/10 bg-black/20 p-3">
+    <div className="grid gap-2 rounded-none border border-white/10 bg-black/20 p-3">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2 text-sm font-bold text-white">
           {isVerified ? (

@@ -209,7 +209,7 @@ export function AvatarStudio({ initialProfile, initials }: AvatarStudioProps) {
 
   return (
     <div className="grid gap-5 xl:grid-cols-[1fr_24rem]">
-      <section className="relative overflow-hidden rounded-lg border border-bullfy-neon-blue/20 bg-bullfy-panel/82 p-5 shadow-glass-blue backdrop-blur-xl">
+      <section className="relative overflow-hidden rounded-none border border-bullfy-neon-blue/20 bg-bullfy-panel/82 p-5 shadow-glass-blue backdrop-blur-xl">
         <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-bullfy-neon-blue/70" />
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -262,7 +262,7 @@ export function AvatarStudio({ initialProfile, initials }: AvatarStudioProps) {
           ) : null}
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-lg border border-white/10 bg-black/35">
+        <div className="mt-6 overflow-hidden rounded-none border border-white/10 bg-black/35">
           <div
             className={cn(
               "avaturn-sdk-shell relative min-h-[30rem] transition-[height] duration-300",
@@ -284,7 +284,7 @@ export function AvatarStudio({ initialProfile, initials }: AvatarStudioProps) {
             {!editorOpen && !hasAvatar ? (
               <div className="absolute inset-0 flex items-center justify-center p-6">
                 <div className="text-center">
-                  <div className="mx-auto flex size-28 items-center justify-center rounded-lg border border-bullfy-neon-blue/25 bg-bullfy-neon-blue/10 text-4xl font-black text-bullfy-neon-blue shadow-neon-blue">
+                  <div className="mx-auto flex size-28 items-center justify-center rounded-none border border-bullfy-neon-blue/25 bg-bullfy-neon-blue/10 text-4xl font-black text-bullfy-neon-blue shadow-neon-blue">
                     {initials}
                   </div>
                   <p className="mt-5 text-sm font-black uppercase tracking-[0.16em] text-slate-300">
@@ -343,7 +343,7 @@ function AvatarPreview({ url }: { url: string }) {
         <Suspense
           fallback={
             <Html center>
-              <div className="rounded-lg border border-white/10 bg-black/70 px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-slate-300">
+              <div className="rounded-none border border-white/10 bg-black/70 px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-slate-300">
                 Cargando avatar
               </div>
             </Html>
@@ -354,7 +354,7 @@ function AvatarPreview({ url }: { url: string }) {
         </Suspense>
       </Canvas>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#020713] to-transparent" />
-      <div className="pointer-events-none absolute left-5 top-5 rounded-lg border border-bullfy-neon-green/25 bg-bullfy-neon-green/10 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-bullfy-neon-green">
+      <div className="pointer-events-none absolute left-5 top-5 rounded-none border border-bullfy-neon-green/25 bg-bullfy-neon-green/10 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-bullfy-neon-green">
         Avatar activo
       </div>
     </div>

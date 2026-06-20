@@ -13,7 +13,6 @@ import type { Chart, KLineData, Options } from "klinecharts";
 import {
   Activity,
   AreaChart,
-  ChartArea,
   LineChart,
   MessageCircle,
   Radio,
@@ -27,7 +26,6 @@ import {
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ChatPanel, type ChatRoom } from "@/modules/chat";
@@ -646,7 +644,7 @@ function ArenaTvView({
             ) : null}
             <ToggleGroup
               aria-label="Cambiar vista de ArenaTV"
-              className="rounded-md border border-cyan-300/15 bg-black/45 p-1 backdrop-blur"
+              className="polygon-shape border border-cyan-300/15 bg-black/45 p-1 backdrop-blur [--polygon-bg:rgba(0,0,0,0.45)] [--polygon-border:rgba(103,232,249,0.15)]"
               size="sm"
               value={[centerViewMode]}
               variant="outline"
@@ -709,7 +707,7 @@ function ArenaTvView({
               {rankingEntries.slice(0, 5).map((entry) => (
                 <div
                   key={entry.traderId}
-                  className="grid grid-cols-[2.5rem_1fr_auto] items-center gap-2 rounded-md border border-white/10 bg-black/25 px-3 py-2"
+                  className="grid grid-cols-[2.5rem_1fr_auto] items-center gap-2 border border-white/10 bg-black/25 px-3 py-2"
                 >
                   <p className="font-mono text-lg font-black text-cyan-100">
                     #{entry.position}
@@ -768,16 +766,16 @@ function ArenaTvPictureInPicture({
   return (
     <button
       aria-label={label}
-      className="group absolute bottom-32 right-5 z-30 hidden w-[min(25rem,calc(100%-2rem))] overflow-hidden rounded-md border border-cyan-300/25 bg-[#02070c]/88 p-1 text-left shadow-[0_24px_90px_rgba(0,0,0,0.55),0_0_0_1px_rgba(163,255,61,0.12)] backdrop-blur-md transition hover:-translate-y-1 hover:border-lime-300/45 hover:shadow-[0_28px_110px_rgba(0,0,0,0.62),0_0_34px_rgba(34,211,238,0.18)] md:block"
+      className="group absolute bottom-32 right-5 z-30 hidden w-[min(25rem,calc(100%-2rem))] overflow-hidden border border-cyan-300/25 bg-[#02070c]/88 p-1 text-left shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-md transition hover:-translate-y-1 hover:border-lime-300/45 hover:shadow-[0_28px_110px_rgba(0,0,0,0.62)] md:block"
       type="button"
       onClick={() => onCenterViewChange(targetMode)}
     >
-      <div className="relative aspect-video overflow-hidden rounded-sm border border-white/10 bg-black">
+      <div className="relative aspect-video overflow-hidden rounded-none border border-white/10 bg-black">
         <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between bg-gradient-to-b from-black/80 to-transparent px-3 py-2">
           <span className="text-[9px] font-black uppercase tracking-[0.18em] text-cyan-100">
             Picture in picture
           </span>
-          <span className="rounded-sm border border-lime-300/25 bg-lime-300/15 px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-lime-200">
+          <span className="rounded-none border border-lime-300/25 bg-lime-300/15 px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-lime-200">
             {targetMode === "market" ? "Grafico" : "3D"}
           </span>
         </div>
@@ -799,7 +797,7 @@ function ArenaTvPictureInPicture({
           <span className="truncate text-[10px] font-black uppercase tracking-[0.16em] text-white drop-shadow">
             {label}
           </span>
-          <span className="rounded-sm bg-cyan-300 px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-slate-950">
+          <span className="rounded-none bg-cyan-300 px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-slate-950">
             Click
           </span>
         </div>
@@ -828,7 +826,7 @@ function BroadcastMarketView({
 
   return (
     <div className="relative h-screen min-h-[42rem] overflow-hidden bg-[#02070c] p-4">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_16%,rgba(0,229,255,0.18),transparent_28%),radial-gradient(circle_at_78%_18%,rgba(163,255,61,0.1),transparent_24%),linear-gradient(180deg,rgba(2,7,12,0.24),rgba(2,7,12,0.96))]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,7,12,0.24),rgba(2,7,12,0.96))]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(2,7,12,0.88),transparent)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(0deg,rgba(2,7,12,0.92),transparent)]" />
 
@@ -896,7 +894,7 @@ function CockpitCommandBar({
 }) {
   const shellClassName = overlay
     ? "absolute left-2 right-3 top-2 z-30 grid min-h-0 gap-2  px-2 py-2 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center"
-    : "grid min-h-0 gap-2 rounded-sm border border-cyan-300/10 bg-[#07131d]/45 px-2.5 py-1.5 shadow-[0_16px_60px_rgba(0,0,0,0.18)] lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center";
+    : "grid min-h-0 gap-2 border border-cyan-300/10 bg-[#07131d]/45 px-2.5 py-1.5 shadow-[0_16px_60px_rgba(0,0,0,0.18)] lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center";
 
   return (
     <div className={shellClassName}>
@@ -905,10 +903,10 @@ function CockpitCommandBar({
           <h2 className="max-w-[min(38rem,70vw)] truncate px-2.5 py-1 text-xs font-black uppercase tracking-[0.12em] text-white sm:text-2xl">
             {tournament.name}
           </h2>
-          <span className="rounded-sm border border-lime-300/20 bg-lime-300/10 px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-lime-100">
+          <span className="rounded-none border border-lime-300/20 bg-lime-300/10 px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-lime-100">
             {activeParticipants} participantes
           </span>
-          <span className="rounded-sm border border-white/10 bg-black/35 px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-slate-300">
+          <span className="rounded-none border border-white/10 bg-black/35 px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-slate-300">
             {tournament.status}
           </span>
         </div>
@@ -953,7 +951,7 @@ function CenterIntelDeck({
   rankingEntries: RankingEntry[];
 }) {
   return (
-    <section className="relative min-h-0 overflow-hidden rounded-md border border-cyan-300/15 bg-[linear-gradient(180deg,rgba(7,19,29,0.96),rgba(2,7,12,0.98))] shadow-[0_20px_80px_rgba(0,0,0,0.24)]">
+    <section className="relative min-h-0 overflow-hidden border border-cyan-300/15 bg-[linear-gradient(180deg,rgba(7,19,29,0.96),rgba(2,7,12,0.98))] shadow-[0_20px_80px_rgba(0,0,0,0.24)]">
       <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,229,255,0.48),rgba(182,255,61,0.42),transparent)]" />
       <Tabs
         className="grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)]"
@@ -986,7 +984,7 @@ function CenterIntelDeck({
               </TabsTrigger>
             </TabsList>
             <button
-              className="flex h-8 items-center justify-center gap-2 rounded-md border border-cyan-300/20 bg-black/25 px-3 text-[10px] font-black uppercase tracking-wide text-cyan-100 transition hover:border-lime-300/40 hover:text-lime-100"
+              className="polygon-shape flex h-8 items-center justify-center gap-2 px-3 text-[10px] font-black uppercase tracking-wide text-cyan-100 transition [--polygon-bg:rgba(0,0,0,0.25)] [--polygon-border:rgba(103,232,249,0.20)] [--polygon-hover-border:rgba(190,242,100,0.40)] hover:text-lime-100"
               type="button"
               onClick={onOpenComms}
             >
@@ -1021,8 +1019,8 @@ function MarketChartView({
   const marketData = useMemo(() => buildMockMarketData(arena), [arena]);
 
   return (
-    <section className="relative min-h-0 overflow-hidden rounded-md border border-cyan-300/5 bg-[#02070c] shadow-[0_24px_90px_rgba(0,0,0,0.38)]">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,229,255,0.10),transparent_28%),linear-gradient(180deg,rgba(3,9,17,0.12),rgba(3,9,17,0.92))]" />
+    <section className="relative min-h-0 overflow-hidden border border-cyan-300/5 bg-[#02070c] shadow-[0_24px_90px_rgba(0,0,0,0.38)]">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(3,9,17,0.12),rgba(3,9,17,0.92))]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent" />
       <div className="relative grid h-full min-h-0 p-1.5">
         <div className="relative min-h-0">
@@ -1053,7 +1051,7 @@ function ChartDecisionOverlays({
   }
 
   return (
-    <div className="pointer-events-none absolute inset-4 z-30 overflow-hidden rounded-md">
+    <div className="pointer-events-none absolute inset-4 z-30 overflow-hidden rounded-none">
       {positions.map((position, index) => {
         const top = Math.max(
           24,
@@ -1073,7 +1071,7 @@ function ChartDecisionOverlays({
           style={{ top: `${top}%` }}
         >
           <span
-            className={`absolute -top-3 rounded-sm border px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] shadow-[0_0_18px_rgba(182,255,61,0.14)] ${
+            className={`absolute -top-3 border px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] ${
               positive
                 ? "border-lime-300/30 bg-lime-300/15 text-lime-100"
                 : "border-red-300/30 bg-red-400/15 text-red-100"
@@ -1179,8 +1177,8 @@ function KlineMarketChart({
     <div
       className={`relative h-full min-h-0 overflow-hidden border border-cyan-300/10 bg-black/45 ${
         isBroadcast
-          ? "rounded-sm shadow-[0_0_0_1px_rgba(163,255,61,0.12),0_30px_120px_rgba(0,0,0,0.48)]"
-          : "rounded-sm"
+          ? "shadow-[0_30px_120px_rgba(0,0,0,0.48)]"
+          : ""
       }`}
     >
       <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(34,211,238,0.07)_1px,transparent_1px),linear-gradient(180deg,rgba(34,211,238,0.05)_1px,transparent_1px)] bg-[size:54px_44px] opacity-24" />
@@ -1193,7 +1191,7 @@ function KlineMarketChart({
           >
             {["M1", "M5", "M15", "H1"].map((period) => (
               <span
-                className={`rounded-sm border px-2 py-1 font-black uppercase tracking-[0.16em] ${
+                className={`rounded-none border px-2 py-1 font-black uppercase tracking-[0.16em] ${
                   period === "M5"
                     ? "border-lime-300/40 bg-lime-300/15 text-lime-200"
                     : "border-white/10 bg-slate-950/70 text-slate-500"
@@ -1209,10 +1207,10 @@ function KlineMarketChart({
               isBroadcast ? "right-4 top-4" : ""
             }`}
           >
-            <span className="rounded-sm border border-lime-300/20 bg-lime-300/10 px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-lime-200">
+            <span className="rounded-none border border-lime-300/20 bg-lime-300/10 px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-lime-200">
               Bid {data.at(-1)?.close.toFixed(5) ?? "--"}
             </span>
-            <span className="rounded-sm border border-red-300/20 bg-red-300/10 px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-red-200">
+            <span className="rounded-none border border-red-300/20 bg-red-300/10 px-2 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-red-200">
               Ask{" "}
               {data.at(-1) ? (data.at(-1)!.close + 0.00008).toFixed(5) : "--"}
             </span>
@@ -1253,7 +1251,7 @@ function LeftRail({
     <aside className="grid h-full min-h-0 content-start gap-2 overflow-y-auto p-0!">
       <CompetitivePressurePanel context={competitiveContext} />
 
-      {currentTrader ? <TraderProfileCard participant={currentTrader} /> : null}
+      {currentTrader ? <TraderProfilePanel participant={currentTrader} /> : null}
 
       <Panel title="Modo desarrollo" icon={Radio}>
         {!arena.currentParticipantJoined ? (
@@ -1309,7 +1307,7 @@ function CompetitivePressurePanel({
   context: CompetitiveContext;
 }) {
   return (
-    <section className="relative overflow-hidden rounded-md border border-amber-300/20 bg-[linear-gradient(180deg,rgba(18,20,15,0.98),rgba(6,12,18,0.98))] p-4 shadow-[0_22px_80px_rgba(0,0,0,0.28)]">
+    <section className="relative overflow-hidden border border-amber-300/20 bg-[linear-gradient(180deg,rgba(18,20,15,0.98),rgba(6,12,18,0.98))] p-4 shadow-[0_22px_80px_rgba(0,0,0,0.28)]">
       <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(251,191,36,0.8),rgba(182,255,61,0.72),transparent)]" />
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -1324,15 +1322,15 @@ function CompetitivePressurePanel({
         <span
           className={
             context.riskTone === "risk"
-              ? "rounded-md border border-red-300/35 bg-red-400/12 px-2 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-red-100 cockpit-risk-pulse"
-              : "rounded-md border border-amber-300/30 bg-amber-300/10 px-2 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-amber-100"
+              ? "rounded-none border border-red-300/35 bg-red-400/12 px-2 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-red-100 cockpit-risk-pulse"
+              : "rounded-none border border-amber-300/30 bg-amber-300/10 px-2 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-amber-100"
           }
         >
           {context.riskLabel}
         </span>
       </div>
 
-      <div className="mt-4 rounded-md border border-white/10 bg-black/25 p-3">
+      <div className="mt-4 rounded-none border border-white/10 bg-black/25 p-3">
         <p className="text-sm font-black text-white">
           {context.trader.position <= 3
             ? `Defiendes podio por $${compactMoneyFormatter.format(context.podiumDelta)}`
@@ -1390,7 +1388,7 @@ function RivalPressureRow({
   value: string;
 }) {
   return (
-    <div className="grid grid-cols-[1fr_auto] items-center gap-2 rounded-md border border-white/10 bg-black/20 px-3 py-2">
+    <div className="grid grid-cols-[1fr_auto] items-center gap-2 rounded-none border border-white/10 bg-black/20 px-3 py-2">
       <div className="min-w-0">
         <p className="text-[9px] font-black uppercase tracking-[0.16em] text-slate-500">
           {label}
@@ -1425,7 +1423,7 @@ function ArenaContextMiniPanel({
   const showingArena = centerViewMode === "market";
 
   return (
-    <section className="relative overflow-hidden rounded-md border border-cyan-300/15 bg-[#07131d]/95 shadow-[0_20px_80px_rgba(0,0,0,0.24)]">
+    <section className="relative overflow-hidden border border-cyan-300/15 bg-[#07131d]/95 shadow-[0_20px_80px_rgba(0,0,0,0.24)]">
       <div className="relative h-56 overflow-hidden border-b border-cyan-300/10 bg-black">
         {showingArena ? (
           <div className="arena-pip-scene h-full w-full opacity-75">
@@ -1438,13 +1436,13 @@ function ArenaContextMiniPanel({
             variant="pip"
           />
         )}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_35%_42%,rgba(182,255,61,0.16),transparent_26%),linear-gradient(180deg,rgba(2,7,12,0.12),rgba(2,7,12,0.85))]" />
-        <div className="absolute left-3 top-3 rounded-sm border border-lime-300/30 bg-lime-300/12 px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-lime-100">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,7,12,0.12),rgba(2,7,12,0.85))]" />
+        <div className="absolute left-3 top-3 rounded-none border border-lime-300/30 bg-lime-300/12 px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-lime-100">
           {showingArena
             ? `Tu cabina #${context.trader.position}`
             : arena.tradeTicket.defaultSymbol}
         </div>
-        <div className="absolute bottom-3 right-3 rounded-sm border border-amber-300/30 bg-amber-300/12 px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-amber-100">
+        <div className="absolute bottom-3 right-3 rounded-none border border-amber-300/30 bg-amber-300/12 px-2 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-amber-100">
           {showingArena ? `Lider ${context.leader?.name ?? "--"}` : "Mercado"}
         </div>
       </div>
@@ -1536,9 +1534,9 @@ function  TradeCommandDeck({
 }) {
   const hasJoined = Boolean(arena.currentParticipantJoined);
   return (
-    <section className="relative grid min-h-[34rem] overflow-hidden rounded-md border border-cyan-300/20 bg-[linear-gradient(180deg,rgba(7,19,29,0.98),rgba(2,7,12,0.98))] p-3 shadow-[0_28px_110px_rgba(0,0,0,0.42),0_0_28px_rgba(0,229,255,0.08)]">
+    <section className="relative grid min-h-[34rem] overflow-hidden border border-cyan-300/20 bg-[linear-gradient(180deg,rgba(7,19,29,0.98),rgba(2,7,12,0.98))] p-3 shadow-[0_28px_110px_rgba(0,0,0,0.42)]">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(182,255,61,0.85),rgba(0,229,255,0.7),transparent)]" />
-      <div className="pointer-events-none absolute inset-y-5 left-0 w-0.5 bg-lime-300/70 shadow-[0_0_18px_rgba(182,255,61,0.45)]" />
+      <div className="pointer-events-none absolute inset-y-5 left-0 w-0.5 bg-lime-300/70" />
       <Tabs
         className="grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)] gap-0"
         defaultValue="trade"
@@ -1576,7 +1574,7 @@ function  TradeCommandDeck({
               >
                 <LineChart data-icon="inline-start" />
                 Posiciones
-                <span className="ml-1 rounded-sm border border-cyan-300/20 bg-cyan-300/10 px-1.5 py-0.5 font-mono text-[9px] text-cyan-100">
+                <span className="ml-1 rounded-none border border-cyan-300/20 bg-cyan-300/10 px-1.5 py-0.5 font-mono text-[9px] text-cyan-100">
                   {positions.length}
                 </span>
               </TabsTrigger>
@@ -1736,8 +1734,8 @@ function OrderTicket({
           onClick={() => setSide("buy")}
           className={
             side === "buy"
-              ? "relative h-12 overflow-hidden rounded-md border border-lime-200 bg-lime-300 font-black text-black shadow-[0_0_28px_rgba(182,255,61,0.22)] hover:cursor-pointer"
-              : "relative h-12 overflow-hidden rounded-md border bg-black/25 font-black text-slate-300 transition hover:border-lime-300/35 hover:text-lime-100 hover:cursor-pointer"
+              ? "polygon-shape relative h-12 overflow-hidden border border-lime-200 bg-transparent font-black text-black [--polygon-bg:#B6FF3D] [--polygon-border:rgba(190,242,100,0.9)] hover:cursor-pointer"
+              : "polygon-shape relative h-12 overflow-hidden border bg-transparent font-black text-slate-300 transition [--polygon-bg:rgba(0,0,0,0.25)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(190,242,100,0.35)] hover:text-lime-100 hover:cursor-pointer"
           }
         >
           <span className="absolute left-2 top-1 rounded border border-black/20 px-1.5 py-0.5 text-[9px] uppercase opacity-70">
@@ -1750,8 +1748,8 @@ function OrderTicket({
           onClick={() => setSide("sell")}
           className={
             side === "sell"
-              ? "relative h-12 overflow-hidden rounded-md border border-red-200 bg-red-400 font-black text-black shadow-[0_0_28px_rgba(255,59,92,0.22)] hover:cursor-pointer"
-              : "relative h-12 overflow-hidden rounded-md border bg-black/25 font-black text-slate-300 transition hover:border-red-300/35 hover:text-red-100 hover:cursor-pointer"
+              ? "polygon-shape relative h-12 overflow-hidden border border-red-200 bg-transparent font-black text-black [--polygon-bg:#F87171] [--polygon-border:rgba(252,165,165,0.9)] hover:cursor-pointer"
+              : "polygon-shape relative h-12 overflow-hidden border bg-transparent font-black text-slate-300 transition [--polygon-bg:rgba(0,0,0,0.25)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(252,165,165,0.35)] hover:text-red-100 hover:cursor-pointer"
           }
         >
           <span className="absolute left-2 top-1 rounded border border-white/10 px-1.5 py-0.5 text-[9px] uppercase opacity-70">
@@ -1779,7 +1777,7 @@ function OrderTicket({
           <select
             value={symbol}
             onChange={(event) => setSymbol(event.target.value)}
-            className="h-9 rounded-md border border-white/10 bg-[#030911] px-3 text-sm font-black text-white"
+            className="h-9 rounded-none border border-white/10 bg-[#030911] px-3 text-sm font-black text-white"
           >
             {arena.tradeTicket.availableSymbols.map((item) => (
               <option key={item} value={item}>
@@ -1793,14 +1791,14 @@ function OrderTicket({
             <input
               value={lots}
               onChange={(event) => setLots(event.target.value)}
-              className="h-9 rounded-md border border-white/10 bg-[#030911] px-3 font-mono text-sm font-black text-white w-full"
+              className="h-9 rounded-none border border-white/10 bg-[#030911] px-3 font-mono text-sm font-black text-white w-full"
             />
           </Field>
           <Field label="Precio">
             <input
               value={price}
               onChange={(event) => setPrice(event.target.value)}
-              className="h-9 rounded-md border border-white/10 bg-[#030911] px-3 font-mono text-sm text-white w-full"
+              className="h-9 rounded-none border border-white/10 bg-[#030911] px-3 font-mono text-sm text-white w-full"
               placeholder="Market"
             />
           </Field>
@@ -1808,7 +1806,7 @@ function OrderTicket({
         <div className="grid grid-cols-2 gap-2">
           <Field label="SL">
             <input
-              className="h-9 rounded-md border border-white/10 bg-[#030911] px-3 font-mono text-sm text-white w-full"
+              className="h-9 rounded-none border border-white/10 bg-[#030911] px-3 font-mono text-sm text-white w-full"
               onChange={(event) => setStopLoss(event.target.value)}
               placeholder="Opcional"
               value={stopLoss}
@@ -1816,7 +1814,7 @@ function OrderTicket({
           </Field>
           <Field label="TP">
             <input
-              className="h-9 rounded-md border border-white/10 bg-[#030911] px-3 font-mono text-sm text-white w-full"
+              className="h-9 rounded-none border border-white/10 bg-[#030911] px-3 font-mono text-sm text-white w-full"
               onChange={(event) => setTakeProfit(event.target.value)}
               placeholder="Opcional"
               value={takeProfit}
@@ -1825,7 +1823,7 @@ function OrderTicket({
         </div>
       </div>
 
-      <div className="mt-3 rounded-md border border-amber-300/20 bg-amber-300/10 p-3">
+      <div className="mt-3 border border-amber-300/20 bg-amber-300/10 p-3">
         <p className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-amber-100">
           <Target className="size-3" />
           Validacion de torneo
@@ -1843,8 +1841,8 @@ function OrderTicket({
       <Button
         className={
           side === "buy"
-            ? "mt-3 h-11 w-full justify-center gap-2 bg-lime-300 font-black uppercase text-slate-950 shadow-[0_0_26px_rgba(182,255,61,0.22)] hover:bg-lime-200"
-            : "mt-3 h-11 w-full justify-center gap-2 bg-red-400 font-black uppercase text-slate-950 shadow-[0_0_26px_rgba(255,59,92,0.22)] hover:bg-red-300"
+            ? "animated-button accent-green mt-3 h-11 w-full justify-center gap-2 bg-lime-300 font-black uppercase text-slate-950"
+            : "animated-button accent-red mt-3 h-11 w-full justify-center gap-2 bg-red-400 font-black uppercase text-slate-950"
         }
         disabled={isSubmitting || !hasAccount}
         onClick={submitOrder}
@@ -1854,11 +1852,11 @@ function OrderTicket({
         {isSubmitting ? "Procesando..." : `Confirmar ${side.toUpperCase()}`}
       </Button>
       {!hasJoined ? (
-        <p className="mt-3 rounded-md border border-amber-300/20 bg-amber-300/10 p-2 text-xs leading-5 text-amber-100">
+        <p className="mt-3 border border-amber-300/20 bg-amber-300/10 p-2 text-xs leading-5 text-amber-100">
           Primero unete al torneo desde el panel izquierdo.
         </p>
       ) : apiError ? (
-        <p className="mt-3 rounded-md border border-red-300/25 bg-red-400/10 p-2 text-xs leading-5 text-red-100">
+        <p className="mt-3 border border-red-300/25 bg-red-400/10 p-2 text-xs leading-5 text-red-100">
           {apiError}
         </p>
       ) : null}
@@ -1879,7 +1877,7 @@ function OpenPositions({
 }) {
   return (
     <div className="grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)] overflow-hidden">
-      <div className="mb-2 flex items-center justify-between gap-2 rounded-md border border-white/10 bg-black/20 px-3 py-2">
+      <div className="mb-2 flex items-center justify-between gap-2 rounded-none border border-white/10 bg-black/20 px-3 py-2">
         <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
           Posiciones en combate
         </p>
@@ -1890,7 +1888,7 @@ function OpenPositions({
       </div>
       <div className="scrollbar-app grid min-h-0 content-start gap-2 overflow-y-auto pr-1">
         {positions.length === 0 ? (
-          <p className="rounded-md border border-white/10 bg-black/20 px-3 py-8 text-center text-xs text-slate-500">
+          <p className="rounded-none border border-white/10 bg-black/20 px-3 py-8 text-center text-xs text-slate-500">
             No hay operaciones abiertas.
           </p>
         ) : (
@@ -1918,7 +1916,7 @@ function CompactPositionRow({
   const positive = position.pnl >= 0;
 
   return (
-    <div className="grid grid-cols-[1fr_auto_auto] items-center gap-2 rounded-md border border-white/10 bg-black/25 px-2 py-1.5">
+    <div className="grid grid-cols-[1fr_auto_auto] items-center gap-2 rounded-none border border-white/10 bg-black/25 px-2 py-1.5">
       <div className="min-w-0">
         <p className="truncate text-xs font-black text-white">
           {position.symbol}
@@ -1967,7 +1965,7 @@ function CommsConsole({
   onClose: () => void;
 }) {
   return (
-    <section className="relative grid h-full min-h-[28rem] rounded-md shadow-[0_20px_80px_rgba(0,0,0,0.24)]">
+    <section className="relative grid h-full min-h-[28rem] rounded-none shadow-[0_20px_80px_rgba(0,0,0,0.24)]">
       <Tabs
         className="grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)] gap-0"
         defaultValue="activity"
@@ -2032,7 +2030,7 @@ function TacticalSidebar({
 
   return (
     <aside className="fixed bottom-2 right-2 top-2 z-50 w-[min(420px,calc(100vw-1rem))]">
-      <div className="grid h-full min-h-0 grid-rows-[auto] overflow-hidden rounded-md border border-cyan-300/20 bg-[#06111c] shadow-[0_24px_90px_rgba(0,0,0,0.42)]">
+      <div className="grid h-full min-h-0 grid-rows-[auto] overflow-hidden rounded-none border border-cyan-300/20 bg-[#06111c] shadow-[0_24px_90px_rgba(0,0,0,0.42)]">
         <div className="h-full min-h-0 p-3">
           <CommsConsole arena={arena} currentUser={currentUser} room={room} onClose={onClose} />
         </div>
@@ -2044,7 +2042,7 @@ function TacticalSidebar({
 function RankingTacticalPanel({ entries }: { entries: RankingEntry[] }) {
   if (entries.length === 0) {
     return (
-      <p className="rounded-md border border-white/10 bg-black/20 px-3 py-8 text-center text-xs text-slate-500">
+      <p className="rounded-none border border-white/10 bg-black/20 px-3 py-8 text-center text-xs text-slate-500">
         No hay ranking actual.
       </p>
     );
@@ -2061,8 +2059,8 @@ function RankingTacticalPanel({ entries }: { entries: RankingEntry[] }) {
           <div
             className={
               podium
-                ? "grid grid-cols-[3rem_1fr_auto] items-center gap-3 rounded-md border border-amber-300/25 bg-amber-300/10 px-3 py-2"
-                : "grid grid-cols-[3rem_1fr_auto] items-center gap-3 rounded-md border border-white/10 bg-black/20 px-3 py-2"
+                ? "grid grid-cols-[3rem_1fr_auto] items-center gap-3 rounded-none border border-amber-300/25 bg-amber-300/10 px-3 py-2"
+                : "grid grid-cols-[3rem_1fr_auto] items-center gap-3 rounded-none border border-white/10 bg-black/20 px-3 py-2"
             }
             key={entry.traderId}
           >
@@ -2169,7 +2167,7 @@ function ActivityFeed({
         events.map((event) => (
           <div
             key={event.id}
-            className="cockpit-feed-in flex gap-3 rounded-md border border-white/10 bg-black/18 p-2"
+            className="cockpit-feed-in flex gap-3 rounded-none border border-white/10 bg-black/18 p-2"
           >
             <div
               className={
@@ -2261,7 +2259,7 @@ function buildTournamentFeedEvents(arena: ArenaState) {
   return [...liveMocks, ...liveEvents].slice(0, 8);
 }
 
-function TraderProfileCard({ participant }: { participant: ArenaParticipant }) {
+function TraderProfilePanel({ participant }: { participant: ArenaParticipant }) {
   const pnlPositive = participant.pnl >= 0;
   const initials = participant.name
     .split(" ")
@@ -2271,7 +2269,7 @@ function TraderProfileCard({ participant }: { participant: ArenaParticipant }) {
     .toUpperCase();
 
   return (
-    <section className="relative overflow-hidden rounded-md border border-amber-300/20 bg-[radial-gradient(circle_at_50%_0%,rgba(251,191,36,0.16),transparent_34%),linear-gradient(180deg,rgba(10,19,31,0.98),rgba(3,9,17,0.98))] p-4 shadow-[0_20px_80px_rgba(0,0,0,0.24)]">
+    <section className="relative overflow-hidden border border-amber-300/20 bg-[linear-gradient(180deg,rgba(10,19,31,0.98),rgba(3,9,17,0.98))] p-4 shadow-[0_20px_80px_rgba(0,0,0,0.24)]">
       <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-amber-200/60" />
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
@@ -2282,7 +2280,7 @@ function TraderProfileCard({ participant }: { participant: ArenaParticipant }) {
             {participant.clan}
           </p>
         </div>
-        <div className="flex items-center gap-1 rounded-md border border-amber-300/30 bg-amber-300/10 px-2 py-1 text-amber-100">
+        <div className="polygon-shape flex items-center gap-1 px-2 py-1 text-amber-100 [--polygon-bg:rgba(251,191,36,0.10)] [--polygon-border:rgba(251,191,36,0.30)]">
           <Trophy className="size-3" />
           <span className="font-mono text-lg font-black leading-none">
             #{participant.position}
@@ -2291,7 +2289,7 @@ function TraderProfileCard({ participant }: { participant: ArenaParticipant }) {
       </div>
 
       <div className="mt-4 flex items-center gap-3">
-        <div className="relative flex size-16 shrink-0 items-center justify-center rounded-full border border-amber-200/50 bg-amber-200/10 text-lg font-black text-amber-100 shadow-[0_0_32px_rgba(251,191,36,0.22)]">
+        <div className="relative flex size-16 shrink-0 items-center justify-center rounded-full border border-amber-200/50 bg-amber-200/10 text-lg font-black text-amber-100">
           <span className="absolute inset-1 rounded-full border border-white/10" />
           {initials}
         </div>
@@ -2328,7 +2326,7 @@ function TraderProfileCard({ participant }: { participant: ArenaParticipant }) {
 
       <Link
         href="/profile"
-        className="mt-4 flex h-9 items-center justify-center rounded-md bg-blue-500 text-xs font-black uppercase tracking-wide text-white transition hover:bg-blue-400"
+        className="animated-button mt-4 flex h-9 items-center justify-center px-3 text-xs font-black uppercase tracking-wide text-white [--animated-button-accent:#00E5FF]"
       >
         Ver mi perfil
       </Link>
@@ -2395,8 +2393,8 @@ function ModeButton({
       onClick={onClick}
       className={
         active
-          ? "flex h-9 items-center justify-center gap-2 rounded-md border border-cyan-300/30 bg-cyan-300/10 px-3 text-xs font-black uppercase text-cyan-100"
-          : "flex h-9 items-center justify-center gap-2 rounded-md border border-white/10 bg-black/35 px-3 text-xs font-black uppercase text-slate-300 transition hover:border-cyan-300/30 hover:text-cyan-100"
+          ? "polygon-shape flex h-9 items-center justify-center gap-2 px-3 text-xs font-black uppercase text-cyan-100 [--polygon-bg:rgba(0,229,255,0.10)] [--polygon-border:rgba(103,232,249,0.30)]"
+          : "polygon-shape flex h-9 items-center justify-center gap-2 px-3 text-xs font-black uppercase text-slate-300 transition [--polygon-bg:rgba(0,0,0,0.35)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(103,232,249,0.30)] hover:text-cyan-100"
       }
     >
       <Icon className="size-3.5" />
@@ -2407,7 +2405,7 @@ function ModeButton({
 
 function LiveBadge() {
   return (
-    <span className="flex items-center gap-2 rounded-sm border border-red-400/40 bg-red-500 px-2 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-white">
+    <span className="flex items-center gap-2 rounded-none border border-red-400/40 bg-red-500 px-2 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-white">
       <span className="size-1.5 rounded-full bg-white" />
       Live
     </span>
@@ -2422,7 +2420,7 @@ function BroadcastMetric({
   value: ReactNode;
 }) {
   return (
-    <div className="rounded-md border border-cyan-300/15 bg-black/45 p-3 backdrop-blur">
+    <div className="polygon-shape p-3 backdrop-blur [--polygon-bg:rgba(0,0,0,0.45)] [--polygon-border:rgba(103,232,249,0.15)]">
       <p className="text-[10px] font-black uppercase tracking-[0.16em] text-cyan-100/70">
         {label}
       </p>
@@ -2439,7 +2437,7 @@ function SyncPill({
   status: PositionsSyncStatus;
 }) {
   return (
-    <div className="rounded-md border border-white/10 bg-black/25 px-3 py-2 text-right">
+    <div className="border border-white/10 bg-black/25 px-3 py-2 text-right">
       <p className={getPositionsSyncStatusClassName(status)}>
         {formatPositionsSyncStatus(status)}
       </p>
@@ -2562,7 +2560,7 @@ function formatSyncTime(value: string) {
 
 function RuleLine({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-3 rounded-md px-3 py-2">
+    <div className="flex items-center justify-between gap-3 rounded-none px-3 py-2">
       <span>{label}</span>
       <span className="font-mono font-black text-white">{value}</span>
     </div>
@@ -2581,14 +2579,14 @@ function Panel({
   title: string;
 }) {
   return (
-    <Card
+    <section
       className={
         fill
-          ? "min-h-0 overflow-hidden rounded-md border-cyan-300/10 bg-[#07131d]/80 p-3 shadow-[0_16px_56px_rgba(0,0,0,0.18)]"
-          : "overflow-hidden rounded-md border-cyan-300/10 bg-[#07131d]/80 p-3 shadow-[0_16px_56px_rgba(0,0,0,0.18)]"
+          ? "grid min-h-0 overflow-hidden border border-cyan-300/10 bg-[#07131d]/72 p-3 shadow-[0_14px_46px_rgba(0,0,0,0.18)]"
+          : "overflow-hidden border border-cyan-300/10 bg-[#07131d]/72 p-3 shadow-[0_14px_46px_rgba(0,0,0,0.18)]"
       }
     >
-      <CardContent
+      <div
         className={
           fill
             ? "grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)]"
@@ -2600,8 +2598,8 @@ function Panel({
           {title}
         </p>
         {children}
-      </CardContent>
-    </Card>
+      </div>
+    </section>
   );
 }
 
@@ -2622,7 +2620,7 @@ function MiniMetric({
         : "text-white";
 
   return (
-    <div className="rounded-md border border-white/10 bg-black/25 px-3 py-2">
+    <div className="border border-white/10 bg-black/25 px-3 py-2">
       <p className="text-[9px] font-black uppercase tracking-wide text-slate-500">
         {label}
       </p>

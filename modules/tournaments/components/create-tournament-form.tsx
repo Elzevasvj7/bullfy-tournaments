@@ -298,7 +298,7 @@ export function CreateTournamentForm() {
                       className="h-11 border-white/10 bg-black/20 text-white"
                     />
                   </Field>
-                  <div className="flex items-center justify-between gap-4 rounded-lg border border-white/10 bg-black/20 p-3">
+                  <div className="flex items-center justify-between gap-4 border border-white/10 bg-black/20 p-3">
                     <Label htmlFor="allowsFundedMt5" className="grid gap-1">
                       <span>Permitir MT5 fondeado</span>
                       <span className="text-xs font-normal text-slate-400">
@@ -349,7 +349,7 @@ export function CreateTournamentForm() {
                 />
               </Field>
 
-              <div className="rounded-lg border border-bullfy-neon-blue/20 bg-bullfy-neon-blue/5 p-3">
+              <div className="border border-bullfy-neon-blue/20 bg-bullfy-neon-blue/5 p-3">
                 <p className="text-[10px] font-black uppercase tracking-[0.18em] text-bullfy-neon-blue">
                   Prize pool estimado
                 </p>
@@ -362,7 +362,7 @@ export function CreateTournamentForm() {
               </div>
 
               {error ? (
-                <div className="flex gap-2 rounded-lg border border-bullfy-neon-red/30 bg-bullfy-neon-red/10 p-3 text-sm text-red-100">
+                <div className="flex gap-2 border border-bullfy-neon-red/30 bg-bullfy-neon-red/10 p-3 text-sm text-red-100">
                   <AlertCircle className="mt-0.5 size-4 shrink-0 text-bullfy-neon-red" />
                   {error}
                 </div>
@@ -421,9 +421,13 @@ function LeagueOption({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-lg border p-3 text-left transition cursor-pointer",
-        active && league === "bmoney" && "border-bullfy-neon-green/60 bg-bullfy-neon-green/10 shadow-neon-green",
-        active && league === "elite" && "border-bullfy-neon-blue/60 bg-bullfy-neon-blue/10 shadow-neon-blue",
+        "polygon-shape cursor-pointer p-3 text-left transition [--polygon-bg:rgba(0,0,0,0.18)] [--polygon-border:rgba(255,255,255,0.10)] [--polygon-hover-border:rgba(255,255,255,0.22)]",
+        active &&
+          league === "bmoney" &&
+          "[--polygon-bg:rgba(182,255,61,0.10)] [--polygon-border:rgba(182,255,61,0.56)]",
+        active &&
+          league === "elite" &&
+          "[--polygon-bg:rgba(0,229,255,0.10)] [--polygon-border:rgba(0,229,255,0.56)]",
       )}
     >
       <span className="block text-sm font-black uppercase text-white">{label}</span>

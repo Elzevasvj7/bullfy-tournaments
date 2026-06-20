@@ -67,7 +67,7 @@ function AvatarBackground() {
         <source src="/videos/tournament-bg.webm" type="video/webm" />
         <source src="/videos/tournament-bg.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,9,18,0.74),rgba(4,9,18,0.94)_36%,rgba(4,9,18,0.99)),radial-gradient(circle_at_18%_12%,rgba(0,229,255,0.18),transparent_28%),radial-gradient(circle_at_84%_18%,rgba(251,191,36,0.12),transparent_24%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,9,18,0.74),rgba(4,9,18,0.94)_36%,rgba(4,9,18,0.99))]" />
     </div>
   );
 }

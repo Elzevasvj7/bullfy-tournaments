@@ -52,11 +52,11 @@ export function ClansOverview({
 
   return (
     <ClanShell sessionUser={sessionUser}>
-      <header className="relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0a1129]/35 p-8 shadow-2xl backdrop-blur-sm md:p-10">
+      <header className="relative overflow-hidden border border-white/5 bg-[#0a1129]/35 p-8 shadow-2xl backdrop-blur-sm md:p-10">
         <div className="t-scanlines z-10" />
         <div className="relative z-20 flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#00E5FF]/30 bg-[#00E5FF]/10 px-5 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#00E5FF]">
+            <div className="mb-8 inline-flex items-center gap-3 border border-[#00E5FF]/30 bg-[#00E5FF]/10 px-5 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-[#00E5FF]">
               <PiCastleTurretBold  className="size-4" />
               Clan sector
             </div>
@@ -97,7 +97,7 @@ export function ClansOverview({
       </header>
 
       {myClan ? (
-        <section className="rounded-3xl border border-[#B6FF3D]/25 bg-[#B6FF3D]/10 p-5 backdrop-blur-sm">
+        <section className="rounded-none border border-[#B6FF3D]/25 bg-[#B6FF3D]/10 p-5 backdrop-blur-sm">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#B6FF3D]">
@@ -110,14 +110,14 @@ export function ClansOverview({
             </div>
             <Link
               href={`/clans/${myClan.slug}`}
-              className="rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-center text-xs font-black uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-[#060B1F]"
+              className="rounded-none border border-white/10 bg-white/5 px-5 py-3 text-center text-xs font-black uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-[#060B1F]"
             >
               Abrir panel
             </Link>
           </div>
         </section>
       ) : (
-        <section className="rounded-3xl border border-dashed border-white/10 bg-[#0a1129]/55 p-5 text-center text-sm text-gray-400">
+        <section className="rounded-none border border-dashed border-white/10 bg-[#0a1129]/55 p-5 text-center text-sm text-gray-400">
           Aun no perteneces a un clan. Crea uno o busca un clan publico para
           unirte con codigo.
         </section>
@@ -181,7 +181,7 @@ function ClanRankingRow({ clan }: { clan: Clan }) {
       className="grid gap-4 px-5 py-4 transition hover:bg-white/[0.035] md:grid-cols-[auto_1fr_auto]"
     >
       <div
-        className="t-mono flex h-12 w-14 items-center justify-center rounded-xl border text-base font-black"
+        className="t-mono flex h-12 w-14 items-center justify-center rounded-none border text-base font-black"
         style={{
           background: `${accent}1a`,
           borderColor: `${accent}33`,
@@ -195,7 +195,7 @@ function ClanRankingRow({ clan }: { clan: Clan }) {
           <h3 className="t-display truncate text-xl font-black text-white">
             {clan.name}
           </h3>
-          <span className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-black text-gray-300">
+          <span className="rounded-none border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-black text-gray-300">
             [{clan.tag}]
           </span>
           {clan.isVerified ? <ShieldCheck className="size-4 text-[#00E5FF]" /> : null}
@@ -238,7 +238,7 @@ function WarCard({ clans, war }: { clans: Clan[]; war: ClanWar }) {
   }[war.status];
 
   return (
-    <div className="rounded-2xl border border-white/5 bg-black/20 p-4">
+    <div className="rounded-none border border-white/5 bg-black/20 p-4">
       <div className="flex items-center justify-between gap-3">
         <p className={`text-[10px] font-black uppercase tracking-[0.18em] ${statusColor}`}>
           {war.status.replace("_", " ")}

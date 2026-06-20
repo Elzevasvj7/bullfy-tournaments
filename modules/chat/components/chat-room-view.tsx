@@ -20,7 +20,7 @@ export function ChatRoomView({
       <AppHeader active="chat" user={sessionUser} />
       <section className="mx-auto grid w-full max-w-7xl gap-5 px-5 py-5 lg:grid-cols-[280px_1fr]">
         <aside className="space-y-5">
-          <section className="rounded-lg border border-white/10 bg-[#0d1620] p-5">
+          <section className="rounded-none border border-white/10 bg-[#0d1620] p-5">
             <Link
               href="/"
               className="text-sm font-medium text-cyan-200 hover:text-cyan-100"
@@ -35,7 +35,7 @@ export function ChatRoomView({
             </p>
           </section>
 
-          <section className="rounded-lg border border-white/10 bg-[#0d1620] p-5">
+          <section className="rounded-none border border-white/10 bg-[#0d1620] p-5">
             <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
               Estado
             </p>
